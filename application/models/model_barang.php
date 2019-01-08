@@ -41,7 +41,7 @@ class model_barang extends ci_model{
         return $this->db->query($query);
     }
     
-    function post()
+    function post($foto)
     {
         
         $query = "SELECT max(id_barang) as maxKode from barang";
@@ -61,7 +61,7 @@ class model_barang extends ci_model{
         $stok   =   0;
         $keterangan = "Kosong";
         $harga      =   $this->input->post('harga');
-        $foto =  $this->input->post('berkas');
+
         $data       = array('nama_barang'=>$nama,
                             'id_kategori'=>$kategori,
                             'id_bahan'=>$bahan,
@@ -69,8 +69,7 @@ class model_barang extends ci_model{
                             'stok'=>$stok,
                             'harga_barang'=>$harga,
                             'berat_satuan'=>$berat,
-                            'keterangan'=> $keterangan,
-                            'foto'=>$_FILES['berkas']['name']);
+                            'foto'=>$foto);
         $this->db->insert('barang',$data);
     }
     
@@ -129,6 +128,17 @@ class model_barang extends ci_model{
     {
         $query= "select * from barang order by id_barang desc limit 3";
         return $this->db->query($query);
+    }
+
+    function deleteimg($id)
+    {   
+       
+        $detail= "SELECT*FROM barang where id_barang='".$id."'";
+        $img=$this->db->query($detail)->result();
+        foreach($img as $r)
+        {
+            unlink('img/barang/'.$r->foto);
+        }
     }
     
 }

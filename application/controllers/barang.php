@@ -42,8 +42,10 @@ class Barang extends CI_Controller{
     function post()
     {
         if(isset($_POST['submit'])){
-            // proses barang
-            $this->model_barang->post();
+            $nama='BRG_'.get_current_date().$_FILES['berkas']['name'];
+            $this->model_barang->post($nama);
+            $this->aksi_upload($nama);
+
            redirect('barang');
             
         }
@@ -68,9 +70,10 @@ class Barang extends CI_Controller{
             $kategori   =   $this->input->post('kategori');
             $bahan      =   $this->input->post('bahan');
             $harga      =   $this->input->post('harga');
-            $foto       =   $_FILES['berkas']['name'];
+            $foto       =   'BRG_'.get_current_date().$_FILES['berkas']['name'];
             if ($foto=="")
             {
+                $this->model_barang->deleteimg($id);
                 $data       = array('nama_barang'=>$nama,
                 'id_kategori'=>$kategori,
                 'id_bahan'=>$bahan,
@@ -83,10 +86,11 @@ class Barang extends CI_Controller{
                 'id_bahan'=>$bahan,
                 'harga_barang'=>$harga,
                 'foto'=>$foto);
+                $this->aksi_upload($foto);
             }
             
             $this->model_barang->edit($data,$id);
-            $this->aksi_upload();
+           
             redirect('barang');
         }
         else{
@@ -104,14 +108,15 @@ class Barang extends CI_Controller{
     function delete()
     {
         $id=  $this->uri->segment(3);
+        $this->model_barang->deleteimg($id);
         $this->model_barang->delete($id);
         redirect('barang');
     }
 
-    public function aksi_upload(){
+    public function aksi_upload($foto){
 		$config['upload_path']          = './img/barang';
 		$config['allowed_types']        = '*';
-		//$config['max_size']             = 100;
+		$config['file_name']             = $foto;
 		//$config['max_width']            = 1024;
 		//$config['max_height']           = 768;
  
