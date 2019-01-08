@@ -69,11 +69,22 @@ class Barang extends CI_Controller{
             $bahan      =   $this->input->post('bahan');
             $harga      =   $this->input->post('harga');
             $foto       =   $_FILES['berkas']['name'];
-            $data       = array('nama_barang'=>$nama,
-                                'id_kategori'=>$kategori,
-                                'id_bahan'=>$bahan,
-                                'harga_barang'=>$harga,
-                                'foto'=>$foto);
+            if ($foto=="")
+            {
+                $data       = array('nama_barang'=>$nama,
+                'id_kategori'=>$kategori,
+                'id_bahan'=>$bahan,
+                'harga_barang'=>$harga);
+            }
+            else
+            {
+                $data       = array('nama_barang'=>$nama,
+                'id_kategori'=>$kategori,
+                'id_bahan'=>$bahan,
+                'harga_barang'=>$harga,
+                'foto'=>$foto);
+            }
+            
             $this->model_barang->edit($data,$id);
             $this->aksi_upload();
             redirect('barang');

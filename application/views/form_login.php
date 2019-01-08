@@ -15,9 +15,10 @@
 		}
 </script>
 </head>
+<body style="overflow-x:hidden; overflow-y:hidden;">
 <div class="wrapper fadeInDown">
     
-  <div id="formContent">
+  <div id="formContent" style="margin-top: -100px;">
     <!-- Tabs Titles -->
     <!-- Icon -->
     <div class="fadeIn first">

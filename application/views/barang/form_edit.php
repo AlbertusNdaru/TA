@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Kategori</label>
-                                    <select readonly name="kategori" class="form-control">
+                                    <select name="kategori" class="form-control">
                                         <?php foreach ($kategori as $k) {
                                             echo "<option value='$k->id_kategori'";
                                             echo $record->nama_kategori==$k->nama_kategori?'selected':'';
@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Bahan</label>
-                                    <select readonly name="bahan" class="form-control">
+                                    <select name="bahan" class="form-control">
                                         <?php foreach ($bahan as $k) {
                                             echo "<option value='$k->id_bahan'";
                                             echo $record->nama_bahan==$k->id_bahan?'selected':'';
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="form-group">
                                     <img src="<?php echo base_foto().$record->foto?>" width="100" height="150p">
-                                    <input required id="inputfoto" accept="image/x-png,image/gif,image/jpeg" type="file" class="form-control" name="berkas" placeholder="upload">
+                                    <input id="inputfoto" accept="image/x-png,image/gif,image/jpeg" type="file" class="form-control" name="berkas" placeholder="upload">
                                 </div>
                                 <div class="form-group">
                                     <label>Harga</label>
