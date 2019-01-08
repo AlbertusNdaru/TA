@@ -45,6 +45,13 @@
                                     <label>Harga</label>
                                     <input onkeypress='validate(event)' class="form-control" name="harga" value="<?php echo $record->harga_barang?>">
                                 </div>
+                                 <div class="form-group">
+                                    <label>Keterangan</label>
+                                    <select name="keterangan" class="form-control">
+                                       <option value="Ready">Ready</option>
+                                       <option value="Kosong">Kosong</option>
+                                    </select>
+                                </div>
 
                                 <button type="submit" name="submit" class="btn btn-primary btn-sm">Update</button> | 
                                 <?php echo anchor('barang','Kembali',array('class'=>'btn btn-danger btn-sm'))?>

@@ -24,6 +24,7 @@
                                                 <th>Berat Satuan</th>
                                                 <th>Foto</th>
                                                 <th>Stok</th>
+                                                <th>Keterangan</th>
                                                 <th>Opsi</th>
                                             </tr>
                                         </thead>
@@ -39,6 +40,7 @@
                                                 <td><?php echo $r->berat_satuan ?></td>
                                                 <td><img src="<?php echo base_foto().$r->foto; ?>" width="60" height="80p"></td>
                                                 <td style="text-align:center"><?php echo $r->stok ?></td>
+                                                <td style="text-align:center"><?php echo $r->keterangan ?></td>
                                                 <td class="center">
                                                     <?php echo anchor('barang/edit/'.$r->id_barang,'Edit','class="btn btn-primary"'); ?> 
                                                     <?php echo anchor('barang/delete/'.$r->id_barang,'Delete','class="btn btn-danger"'); ?>

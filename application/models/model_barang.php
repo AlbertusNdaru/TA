@@ -69,6 +69,7 @@ class model_barang extends ci_model{
                             'stok'=>$stok,
                             'harga_barang'=>$harga,
                             'berat_satuan'=>$berat,
+                            'keterangan'=> $keterangan,
                             'foto'=>$foto);
         $this->db->insert('barang',$data);
     }
