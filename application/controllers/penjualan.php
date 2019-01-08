@@ -5,6 +5,7 @@ class penjualan extends CI_Controller{
         parent::__construct();
         $this->load->model('model_barang');
         $this->load->model('model_transaksi');
+        $this->load->model('model_bahan');
        
     }
 
@@ -25,6 +26,15 @@ class penjualan extends CI_Controller{
       
         
        
+    }
+
+    function pemesanan()
+    {
+        $this->load->model('model_kategori');
+            $data['kategori']=  $this->model_kategori->tampilkan_data()->result();
+            $data['bahan']=  $this->model_bahan->tampilkan_data()->result();
+            //$this->load->view('barang/form_input',$data);
+            $this->template->load('template1','userinterface/pemesanan',$data);
     }
 
     function stokbarang()
