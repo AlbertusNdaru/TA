@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2019 at 07:35 AM
+-- Generation Time: Jan 08, 2019 at 10:55 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -114,8 +114,8 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `id_kategori`, `id_bahan`, `nama_barang`, `harga_barang`, `berat_satuan`, `foto`, `keterangan`, `stok`) VALUES
-('BRG001', 'KTG001', 'BHN002', 'Cincin Nikah', 2000000, 21, 'BRG_20190108_105731cinkah22.jpg', '', 0),
-('BRG002', 'KTG001', 'BHN001', 'Cincin Nikah', 2000000, 30, 'BRG_20190108_105804cinkah22.jpg', '', 0);
+('BRG001', 'KTG001', 'BHN002', 'Cincin Nikah', 2000000, 21, 'BRG_20190108_105731cinkah22.jpg', 'Ready', 9),
+('BRG002', 'KTG001', 'BHN001', 'Cincin Nikah', 2000000, 30, 'BRG_20190108_105804cinkah22.jpg', 'Ready', 8);
 
 -- --------------------------------------------------------
 
@@ -147,7 +147,9 @@ INSERT INTO `detail_pembelian` (`id_detail_pembelian`, `id_barang`, `id_pembelia
 ('PMB006', 'BRG001', 'BLI003', 'PNR001', 5, 750000, '2018-12-12 09:36:02', 1),
 ('PMB007', 'BRG004', 'BLI004', 'PNR001', 20, 200000000, '2018-12-12 09:36:35', 1),
 ('PMB008', 'BRG005', 'BLI004', 'PNR002', 20, 200000000, '2018-12-12 09:36:35', 1),
-('PMB009', 'BRG003', 'BLI004', 'PNR002', 20, 200000000, '2018-12-12 09:36:35', 1);
+('PMB009', 'BRG003', 'BLI004', 'PNR002', 20, 200000000, '2018-12-12 09:36:35', 1),
+('PMB010', 'BRG001', 'BLI005', 'PNR001', 10, 2000000, '2019-01-08 07:45:12', 1),
+('PMB011', 'BRG002', 'BLI005', 'PNR001', 10, 2000000, '2019-01-08 07:45:12', 1);
 
 --
 -- Triggers `detail_pembelian`
@@ -285,7 +287,9 @@ INSERT INTO `keranjang` (`id_keranjang`, `id_anggota`, `id_penjualan`, `id_baran
 ('KRJ018', 'AGT001', 'PNJ009', 'BRG002', 1, '2018-12-12 16:37:00', 1),
 ('KRJ019', 'AGT001', 'PNJ009', 'BRG003', 1, '2018-12-12 16:37:01', 1),
 ('KRJ020', 'AGT001', 'PNJ009', 'BRG004', 1, '2018-12-12 16:37:01', 1),
-('KRJ021', 'AGT001', 'PNJ009', 'BRG005', 1, '2018-12-12 16:37:05', 1);
+('KRJ021', 'AGT001', 'PNJ009', 'BRG005', 1, '2018-12-12 16:37:05', 1),
+('KRJ022', 'AGT001', 'PNJ010', 'BRG002', 2, '2019-01-08 14:45:47', 1),
+('KRJ023', 'AGT001', 'PNJ010', 'BRG001', 1, '2019-01-08 14:45:48', 1);
 
 --
 -- Triggers `keranjang`
@@ -334,7 +338,8 @@ INSERT INTO `pembelian` (`id_pembelian`, `tgl_masuk`, `total_bayar`) VALUES
 ('BLI001', '2018-12-12 07:38:46', 25050000),
 ('BLI002', '2018-12-12 09:35:48', 53250000),
 ('BLI003', '2018-12-12 09:36:02', 53250000),
-('BLI004', '2018-12-12 09:36:35', 12000000000);
+('BLI004', '2018-12-12 09:36:35', 12000000000),
+('BLI005', '2019-01-08 07:45:12', 40000000);
 
 -- --------------------------------------------------------
 
@@ -427,7 +432,8 @@ INSERT INTO `penjualan` (`id_penjualan`, `id_jasa_layanan_kirim`, `tgl`, `ongkir
 ('PNJ006', 'JASA001', '2018-12-12 10:06:38', 55000, 10705000, 'Dikirim', 'header.png', '010180102446518'),
 ('PNJ007', 'JASA001', '2018-12-12 10:07:16', 55000, 11455000, 'Dikirim', 'header.png', '010180102446518'),
 ('PNJ008', 'JASA003', '2018-12-12 11:40:05', 26000, 10676000, 'Terkirim', 'header.png', 'RT086052373DE'),
-('PNJ009', 'JASA002', '2018-12-12 16:37:23', 43000, 610693000, 'Dikirim', 'murni.png', '030072204280');
+('PNJ009', 'JASA002', '2018-12-12 16:37:23', 43000, 610693000, 'Dikirim', 'murni.png', '030072204280'),
+('PNJ010', 'JASA001', '2019-01-08 14:46:11', 36000, 6036000, 'Dikirim', 'beach-exotic-holiday-248797.jpg', '010180102446518');
 
 --
 -- Indexes for dumped tables
