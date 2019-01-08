@@ -5,13 +5,11 @@ class penjualan extends CI_Controller{
         parent::__construct();
         $this->load->model('model_barang');
         $this->load->model('model_transaksi');
-        check_session();
+       
     }
 
     function index(){
 
-        if($_SESSION['level']==0)
-        {
             $this->load->library('pagination');
             $config['base_url'] = base_url().'index.php/penjualan/index/';
             $config['total_rows'] = $this->model_barang->tampil_data()->num_rows();
@@ -23,17 +21,15 @@ class penjualan extends CI_Controller{
             $data['databarang']     =    $this->model_barang->tampilkan_data_paging($config,$halaman);
             $data['terlaris']   = $this->model_barang->baranglaris();
             $this->template->load('template1','userinterface/penjualan',$data);
-        }
-        else
-        {
-            redirect('login');
-        }
+        
+      
         
        
     }
 
     function stokbarang()
     {
+        check_session();
        $id= $this->input->post('id_barang');
        $data= $this->model_barang->tampil_data_stok_byId($id)->result();
        echo json_encode($data);
@@ -64,7 +60,7 @@ class penjualan extends CI_Controller{
 
 
     function post_penjualan()
-    {
+    { check_session();
                 $id= $this->input->post('id_barang');
                 $datatransaksi = array('id'=>$id);
                 $jmlchart = $this->model_transaksi->insertdetail($datatransaksi);
@@ -74,7 +70,7 @@ class penjualan extends CI_Controller{
     
 
     function get_totalchart()
-    {
+    { check_session();
         $jmlchart = $this->model_transaksi->totalchart();
         echo $jmlchart;
     }
@@ -92,21 +88,21 @@ class penjualan extends CI_Controller{
     }
 
     function get_data_transaksiuser()
-    {
+    { check_session();
         $id=$_POST['id'];
         $datapending = $this->model_transaksi->tampiltransaksiuser($id)->result();
         echo json_encode($datapending);
     }
 
     function accpending()
-    {
+    { check_session();
         $id= $_POST['id_penjualan'];
         $datapending = $this->model_transaksi->accdatapending($id);
     }
 
     
     function chart()
-    {
+    { check_session();
         if($_SESSION['level']==0)
         {
         $pembelian['databelanja'] = $this->model_transaksi->chart();
@@ -120,7 +116,7 @@ class penjualan extends CI_Controller{
 
     
     function chartpenjualanoff()
-    {
+    { check_session();
         if($_SESSION['level']==1)
         {
             $pembelian['databelanja'] = $this->model_transaksi->chartoff()->result();
@@ -135,30 +131,30 @@ class penjualan extends CI_Controller{
     }
 
     function hapusdetail($id)
-    {
+    { check_session();
         $this->model_transaksi->hapusdetailonline($id);
         redirect("penjualan/chart");
     }
     function hapusdetailbatal()
-    {
+    { check_session();
         $this->model_transaksi->hapusdetailonlinebatal();
         redirect("penjualan/chart");
     }
     function hapusdetailadmin()
-    {
+    { check_session();
         $id= $this->input->post('id_detail');
         $this->model_transaksi->hapusdetail($id);
        
     }
     function hapusdetailadminbatal()
-    {
+    { check_session();
         $id= $this->input->post('id_detail');
         $this->model_transaksi->hapusdetailbatal();
        
     }
 
     function updatepenjualan()
-    {
+    { check_session();
         $datapenjualan = array('id_penjualan'=>null,
                         'id_jasa_layanan_kirim'=>$this->input->post('idjasakirim'),
                       'ongkir'=>$this->input->post('ongkirjml'),
@@ -169,7 +165,7 @@ class penjualan extends CI_Controller{
 
 
     function updatepenjualanoffline()
-    {
+    { check_session();
         $totalbayar=$this->input->post('total');
         $this->model_transaksi->insertpenjualanoffline($totalbayar);
         redirect("penjualan/penjualan_offline");

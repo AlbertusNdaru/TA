@@ -102,7 +102,9 @@ function detail()
 }
 
  function belibarang(id)
- {    
+ { 
+    if ('<?php if(isset($_SESSION["userdata"])) {echo true;} else {echo false;}?>')
+    {
         var stok = parseInt($('#'+id).val());
         if(stok<1)
         {
@@ -123,7 +125,11 @@ function detail()
         }
      })
         }
-       
+    }
+    else
+    {
+        login();
+    }
      
  }
 

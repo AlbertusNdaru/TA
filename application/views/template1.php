@@ -60,18 +60,10 @@
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span>
-                        <?php 
-                        if ($_SESSION['level'] == 1)
-                        {?>
-                        <img style="width:80%;margin-top:10px;" src="<?php echo base_url(); ?>/assets/img/admin.png" alt="homepage" class="dark-logo" />
-                        <?php
-                        }
-                        else
-                        {?>
+                
+                   
                         <img style="width:80%;margin-top:10px;" src="<?php echo base_url(); ?>/assets/img/member.png" alt="homepage" class="dark-logo" />
-                         <?php
-                         }
-                         ?>
+                        
                         </span>
                     </a>
 
@@ -99,8 +91,8 @@
                         <!-- ============================================================== -->
                         <!-- Profile -->
                         <!-- ============================================================== -->
-                        
-                        <!-- <li><a href="<?php  echo base_url()?>"><span class='glyphicon glyphicon-home'></span>  Home  </a></li> -->
+                        <?php if (isset($_SESSION['userdata'])) {?>
+                         <!-- <li><a href="<?php  echo base_url()?>"><span class='glyphicon glyphicon-home'></span>  Home  </a></li> -->
 				        <li><button  style="margin-top: 6px; margin-right:5px;background-color:silver; color:black;" class='btn btn-primary'  onclick="page('1')" ><span class='glyphicon glyphicon-shopping-cart'></span>  Cart <span class="badge" id="charttotal"></span> </button></li>
                         <!-- <li><button  style="margin-top: 6px; margin-right:5px;background-color:deeppink" class='btn btn-primary' id="confirmpesan" href="chat.php" data-toggle="modal" data-target="#modalpesan"><span class='glyphicon glyphicon-comment'></span>  Pesan  </button></li> -->
                         <li><button  style="margin-top: 6px; margin-right:5px;background-color:silver; color:black;"  class='btn btn-primary' data-toggle="modal" data-target="#modalstatus" onclick="status()">Cek Status Pesanan</button></li>
@@ -113,8 +105,15 @@
                             <hr style="margin-top:0px; margin-bottom:0px">
                             <li style="background-color: grey;"><a style="color:white;" href="<?php echo base_url().'logout'?>">Keluar</a></li>
                         </ul>
+                        <?php } else {?>
+
+                        <!-- <li><a href="<?php  echo base_url()?>"><span class='glyphicon glyphicon-home'></span>  Home  </a></li> -->
+				        <li><button  style="margin-top: 6px; margin-right:5px;background-color:silver; color:black;" class='btn btn-primary'  onclick="login()" >Login</button></li>
+                        <li><button  style="margin-top: 6px; margin-right:5px;background-color:skyblue; color:black;" class='btn btn-primary'  onclick="daftar()" >Daftar</button></li>
+                       
+                        <?php };?>
                       </li>
-                    
+                      
                       
                     </ul>
                 </div>
@@ -201,7 +200,7 @@
        
 
 <script type="text/javascript">
-window.onload=total('<?php echo $_SESSION['level']?>');
+window.onload=total('<?php if(isset($_SESSION["userdata"])){ echo $_SESSION['level'];} else {echo null;}?>');
 
 function validate(evt) {
   var theEvent = evt || window.event;
@@ -224,6 +223,8 @@ function validate(evt) {
 
 
 function total(level) {
+if(level!= "")
+{
     level = parseInt(level);
 if(level == 1)
 {
@@ -277,6 +278,8 @@ else
         }
     });
 }
+}
+   
    
 }
 
@@ -381,11 +384,12 @@ function getpreviewpembelian()
 
 function status()
 {
-    
-    $.ajax({
+    if ('<?php if(isset($_SESSION["userdata"])) {echo true;} else {echo false;}?>')
+    {
+        $.ajax({
         url:"<?php echo base_url('penjualan/get_data_transaksiuser');?>",
         type : "POST",
-        data : {id : '<?php echo $_SESSION['userdata']->id_anggota?>'},
+        data : {id : '<?php if(isset($_SESSION["userdata"])) {echo $_SESSION['userdata']->id_anggota;} else{echo null;}?>'},
         success : function(data)
         {
           var result = $.parseJSON(data);
@@ -422,6 +426,8 @@ function status()
           }
         }
     });
+    }
+   
 }
 
 function ACC(id)
@@ -485,6 +491,17 @@ var index= parseInt(a);
     window.location="<?php  echo base_url().'penjualan/chart'?>";
         break;
 }
+}
+
+function login()
+{
+    window.location="<?php  echo base_url().'auth/loginuser'?>";
+  
+}
+function daftar()
+{
+    window.location="<?php  echo base_url().'auth/daftaruser'?>";
+    
 }
 
 

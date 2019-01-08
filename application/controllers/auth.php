@@ -76,7 +76,7 @@ class auth extends CI_Controller{
             {
                 $this->session->sess_destroy();
                 $this->session->set_userdata('level',0);
-                $this->load->view('form_loginuser');
+               redirect('penjualan');
             }
           
         }
