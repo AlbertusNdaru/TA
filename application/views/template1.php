@@ -24,6 +24,18 @@
     <script src="<?php echo base_url(); ?>assets/js/accounting.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootbox.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/hover-box.js" type="text/javascript"></script>
+    <script src="<?php echo base_url()?>assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="<?php echo base_url()?>assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="<?php echo base_url()?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="<?php echo base_url()?>assets/js/perfect-scrollbar.jquery.min.js"></script>
+    <!--Wave Effects -->
+    <script src="<?php echo base_url()?>assets/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="<?php echo base_url()?>assets/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="<?php echo base_url()?>assets/js/custom.min.js"></script>
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -185,18 +197,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="<?php echo base_url()?>assets/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="<?php echo base_url()?>assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="<?php echo base_url()?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="<?php echo base_url()?>assets/js/perfect-scrollbar.jquery.min.js"></script>
-    <!--Wave Effects -->
-    <script src="<?php echo base_url()?>assets/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="<?php echo base_url()?>assets/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="<?php echo base_url()?>assets/js/custom.min.js"></script>
+    
        
 
 <script type="text/javascript">

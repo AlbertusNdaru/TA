@@ -8,6 +8,11 @@ class model_transaksi extends ci_model
         $query= "SELECT*FROM penjualan";
         return $this->db->query($query);   
     }
+    function tampilpemesanan($id)
+    {
+        $query= "SELECT*FROM pemesanan where id_anggota='".$id."'";
+        return $this->db->query($query);   
+    }
 
     function tampiltransaksinoresi()
     {
@@ -196,6 +201,25 @@ class model_transaksi extends ci_model
         	
 		
     }
+
+    function insertpemesanan($datapenjualan)
+    {
+        $query = "SELECT max(id_pemesanan) as maxKode from pemesanan";
+        $check = $this->db->query($query);
+        $data = $check->row();
+        $id_pemesanan = $data->maxKode;
+        echo $id_penjualan;
+		$noUrut = (int) substr($id_pemesanan,3,3);
+        $noUrut++;
+        echo $noUrut;
+		$char = "PSN";
+        $newID = $char. sprintf("%03s",$noUrut);
+        
+        $datapenjualan['id_pemesanan']= $newID;
+        echo json_encode($datapenjualan);
+        $this->db->insert('pemesanan',$datapenjualan); 
+    }
+
 
     function insertpenjualanoffline($totalbayar)
     {

@@ -37,7 +37,7 @@ class model_barang extends ci_model{
     function tampil_data_by_name()
     {
         $nama =$this->input->post('nama');
-        $query= "SELECT a.* , b.jenis_barang FROM Barang as a inner join kategori as b on b.id_kategori=a.id_kategori where nama_barang like '%".$nama."%'";
+        $query= "SELECT a.* , b.nama_kategori FROM barang as a inner join kategori as b on b.id_kategori=a.id_kategori where nama_barang like '%".$nama."%'";
         return $this->db->query($query);
     }
     

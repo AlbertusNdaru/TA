@@ -21,18 +21,16 @@ class penjualan extends CI_Controller{
             $halaman            =$halaman==''?0:$halaman-1;
             $data['databarang']     =    $this->model_barang->tampilkan_data_paging($config,$halaman);
             $data['terlaris']   = $this->model_barang->baranglaris();
-            $this->template->load('template1','userinterface/penjualan',$data);
-        
-      
-        
+            $this->template->load('template1','userinterface/penjualan',$data);     
        
     }
 
     function pemesanan()
     {
         $this->load->model('model_kategori');
+        $id= $_SESSION['userdata']->id_anggota;
             $data['kategori']=  $this->model_kategori->tampilkan_data()->result();
-            $data['bahan']=  $this->model_bahan->tampilkan_data()->result();
+            $data['pesanan']=  $this->model_transaksi->tampilpemesanan($id)->result();
             //$this->load->view('barang/form_input',$data);
             $this->template->load('template1','userinterface/pemesanan',$data);
     }
@@ -63,7 +61,7 @@ class penjualan extends CI_Controller{
         $data['record']=$this->model_barang->tampil_data()->result();
         echo json_encode($data['record']);
     }
-    function penjualan_offline_tampildata_byname(){
+    function penjualan_tampildata_byname(){
         $data['record']=$this->model_barang->tampil_data_by_name()->result();
         echo json_encode($data['record']);
     }
@@ -77,7 +75,25 @@ class penjualan extends CI_Controller{
                 //redirect("penjualan");
       
     }
-    
+  
+    function post_transaksi()
+    { check_session();
+        $deskripsi= $this->post->input('deskripsi');
+        $kategori= $this->post->input('kategori');
+        $brtpesan= $this->post->input('brtpesan');
+        $jmlpesan= $this->post->input('jmlpesan');
+        $idanggota = $_SESSION['userdata']->id_anggota;
+            $datatransaksi = array('id_anggota'=>$idanggota,
+                                   'id_kategori'=>$kategori,
+                                   'deskripsi'=>$deskripsi,
+                                   'jumlah'=>$jmlpesan,
+                                   'berat'=>$brtpesan,
+                                   'id_pemesanan'=>''
+                                );
+            $jmlchart = $this->model_transaksi->insertpemesanan($datatransaksi);
+                //redirect("penjualan");
+        
+    }
 
     function get_totalchart()
     { check_session();

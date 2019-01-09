@@ -155,7 +155,7 @@ function caribarangnama()
  {
      var nama = $('#caribarang').val();
     $.ajax({
-        url  :"<?php echo base_url('penjualan/penjualan_offline_tampildata_byname');?>",
+        url  :"<?php echo base_url('penjualan/penjualan_tampildata_byname');?>",
         type : 'POST',
         data : {
             nama : nama
@@ -173,13 +173,12 @@ function caribarangnama()
                             "<div class='panel panel-primary text-center no-boder bg-color-green'>"+
                                 "<div class='panel-body'>"+
                                 "<h3>"+result[i]['nama_barang']+"</h3>"+
-                                "<img style='width: 100%;height: 176px;' src='"+result[i]['foto']+"'>"+
-                                "<h6>"+accounting.formatMoney(result[i]['harga_jual'], "Rp ", 2, ".", ",")+"</h6>"+
-                                 "<input hidden name='hrg' value='"+result[i]['harga_jual']+"'>"+
+                                "<img style='width: 100%;height: 176px;' src='<?php echo base_url('img/barang/')?>"+result[i]['foto']+"'>"+
+                                "<h6>"+accounting.formatMoney(result[i]['harga_barang'], "Rp ", 2, ".", ",")+"</h6>"+
+                                 "<input hidden name='hrg' value='"+result[i]['harga_barang']+"'>"+
                                 "</div>"+
                                 "<div class='panel-footer back-footer-green'>"+
-                                 "<input name='jml' id='"+result[i]['id_barang']+"' style='max-width: 35px;text-align: center;' value='1' type='number'  min='1' max='5' />"+
-                                 "<button  name='transaksi' onclick=belibarang('"+result[i]['id_barang']+"')>BELI</button>"+ 
+                                 "<button id='btnbeliuser' class='btn btn-success' name='transaksi' onclick=belibarang('<?php echo $data->id_barang?>')>BELI</button>"+
                                 "</div>"+
                             "</div>"+
                         "</div>"
