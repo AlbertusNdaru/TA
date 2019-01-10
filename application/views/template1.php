@@ -114,6 +114,7 @@
                         <ul class="dropdown-menu" style="background-color: red;border-radius: 7px;min-width: 90%;">
                             <li><a style="color:white;" href="<?php echo base_url().'transaksi/get_data_transaksi_by_id'?>">Transaksi</a></li>
                             <li><a style="color:white;" href="<?php echo base_url().'transaksi/pembayaran'?>">Pembayaran</a></li>
+                            <li><a style="color:white;" href="<?php echo base_url().'penjualan/pemesanan'?>">Pemesanan</a></li>
                             <hr style="margin-top:0px; margin-bottom:0px">
                             <li style="background-color: grey;"><a style="color:white;" href="<?php echo base_url().'logout'?>">Keluar</a></li>
                         </ul>

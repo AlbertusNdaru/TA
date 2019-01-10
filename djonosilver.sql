@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2019 at 10:55 AM
+-- Generation Time: Jan 10, 2019 at 10:50 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -351,18 +351,29 @@ CREATE TABLE `pemesanan` (
   `id_pemesanan` varchar(11) NOT NULL,
   `id_anggota` varchar(11) DEFAULT NULL,
   `id_kategori` varchar(11) NOT NULL,
+  `id_pengrajin` varchar(11) DEFAULT NULL,
   `tgl_pelunasan` date DEFAULT NULL,
   `tgl_selesai` date DEFAULT NULL,
   `foto` varchar(500) NOT NULL,
-  `id_bahan` varchar(11) NOT NULL,
+  `id_bahan` varchar(11) DEFAULT NULL,
   `dp` int(11) DEFAULT NULL,
-  `kekurangan` int(11) NOT NULL,
+  `kekurangan` int(11) DEFAULT NULL,
   `jumlah` int(11) NOT NULL,
-  `status` enum('Proses','Selesai') DEFAULT NULL,
+  `totalharga` int(11) DEFAULT '0',
+  `berat` int(11) NOT NULL,
+  `status` enum('Pending','Terverifikasi','Proses','Selesai','Dikirim','Terkirim','Waiting') DEFAULT 'Pending',
   `cek` int(11) NOT NULL DEFAULT '0',
   `tgl` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deskripsi` varchar(400) NOT NULL
+  `deskripsi` varchar(400) DEFAULT NULL,
+  `bukti_pembayaran` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pemesanan`
+--
+
+INSERT INTO `pemesanan` (`id_pemesanan`, `id_anggota`, `id_kategori`, `id_pengrajin`, `tgl_pelunasan`, `tgl_selesai`, `foto`, `id_bahan`, `dp`, `kekurangan`, `jumlah`, `totalharga`, `berat`, `status`, `cek`, `tgl`, `deskripsi`, `bukti_pembayaran`) VALUES
+('PSN003', 'AGT001', 'KTG001', NULL, NULL, NULL, 'PSN20190110_153640cinkah22.jpg', NULL, NULL, NULL, 1, 0, 14, 'Waiting', 0, '2019-01-10 15:36:40', 'sdfsfsdf', NULL);
 
 -- --------------------------------------------------------
 
@@ -516,7 +527,8 @@ ALTER TABLE `pemesanan`
   ADD PRIMARY KEY (`id_pemesanan`),
   ADD KEY `id_anggota` (`id_anggota`),
   ADD KEY `id_bahan` (`id_bahan`),
-  ADD KEY `id_kategori` (`id_kategori`);
+  ADD KEY `id_kategori` (`id_kategori`),
+  ADD KEY `id_pengrajin` (`id_pengrajin`);
 
 --
 -- Indexes for table `pemesanan_pengrajin`
@@ -553,7 +565,8 @@ ALTER TABLE `keranjang`
 ALTER TABLE `pemesanan`
   ADD CONSTRAINT `pemesanan_ibfk_2` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pemesanan_ibfk_3` FOREIGN KEY (`id_bahan`) REFERENCES `bahan` (`id_bahan`),
-  ADD CONSTRAINT `pemesanan_ibfk_4` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
+  ADD CONSTRAINT `pemesanan_ibfk_4` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`),
+  ADD CONSTRAINT `pemesanan_ibfk_5` FOREIGN KEY (`id_pengrajin`) REFERENCES `pengrajin` (`id_pengrajin`);
 
 --
 -- Constraints for table `penjualan`

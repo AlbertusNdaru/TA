@@ -37,6 +37,10 @@ function base_fotobukti()
     return base_url('img/bukti_transaksi/');
 }
 
+function base_fotopemesanan()
+{
+    return base_url('img/pemesanan/');
+}
 function get_current_date()
 {
     $CI= & get_instance();

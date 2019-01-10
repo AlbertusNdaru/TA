@@ -87,12 +87,8 @@
                         <!-- ============================================================== -->
                         <!-- Profile -->
                         <!-- ============================================================== -->
-                        <?php 
-                      if ($_SESSION['level'] == 1)
-                      {?>
-           
-				
                       <li><button style="margin-top: 6px; margin-right:5px;background-color:silver ; color:black;" id="pesan_sedia"  class='btn btn-primary' data-toggle="modal" data-target="#modalpesan" onclick="pesan()" ><span class='glyphicon glyphicon-comment'></span>  Pesan <span class="badge" id="chartpending"></span></button></li>
+                      <li><button style="margin-top: 6px; margin-right:5px;background-color:silver ; color:black;" id="pesan_sedia"  class='btn btn-primary' data-toggle="modal" data-target="#modalpemesanan" onclick="pemesanan()" ><span class='glyphicon glyphicon-comment'></span>  Pemesanan <span class="badge" id="pemesananpending"></span></button></li>
                       <li class="dropdown">
                         <button style="margin-top: 6px; margin-right:15px;" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Hy , <?php echo $_SESSION["userdata"]->nama_admin;?> &nbsp<span class="glyphicon glyphicon-user"></span>
                         <span class="caret"></span></button>
@@ -102,22 +98,7 @@
                       </li>
 
                       <?php
-                      }
-                      else
-                      {
-                      ?>
-                        <!-- <li><a href="<?php  echo base_url()?>"><span class='glyphicon glyphicon-home'></span>  Home  </a></li> -->
-				        <li><button  style="margin-top: 6px; margin-right:5px;background-color:silver" class='btn btn-primary'  onclick="page('1')" ><span class='glyphicon glyphicon-shopping-cart'></span>  Cart <span class="badge" id="charttotal"></span> </button></li>
-                        <!-- <li><button  style="margin-top: 6px; margin-right:5px;background-color:deeppink" class='btn btn-primary' id="confirmpesan" href="chat.php" data-toggle="modal" data-target="#modalpesan"><span class='glyphicon glyphicon-comment'></span>  Pesan  </button></li> -->
-                        <li class="dropdown">
-                        <button style="margin-top: 6px; margin-right:15px;" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Hy , <?php echo $_SESSION["userdata"]->nama_member;?> &nbsp<span class="glyphicon glyphicon-user"></span>
-                        <span class="caret"></span></button>
-                        <ul class="dropdown-menu" style="background-color: red;border-radius: 7px;min-width: 90%;">
-                            <li><a style="color:white;" href="<?php echo base_url().'logout'?>">Keluar</a></li>
-                        </ul>
-                      </li>
-                      <?php
-                      }
+                     
                       ?>
                     </ul>
                 </div>
@@ -263,12 +244,24 @@ if(level == 1)
         type : "get",
         success : function(data)
         {
-            	
+            	console.log(data);
                 $("#chartpending").html(
                     "<div>"+data+"</div>"
                 );
+            
+        $.ajax({
+        url:"<?php echo base_url('penjualan/get_pemesanan_pending');?>",
+        type : "get",
+        success : function(data)
+        { 
+            $("#pemesananpending").html(
+                    "<div>"+data+"</div>"
+                );
             if(window.location.href==="<?php echo base_url('pembelian')?>"){getpreviewpembelian();}
-            if(window.location.href==="<?php echo base_url('penjualanOffline')?>"){getpreview();}
+        }
+    })
+           
+            
         
        
         }
@@ -438,7 +431,69 @@ function pesan()
     });
 }
 
+function pemesanan()
+{
+    
+    $.ajax({
+        url:"<?php echo base_url('penjualan/get_datapemesanan_pending');?>",
+        type : "get",
+        success : function(data)
+        {
+          var result = $.parseJSON(data);
+          $("#modalpemesananpending").empty();
+          for(var i=0; i<result.length; i++)
+          {
+            $("#modalpemesananpending").append(
+                        "<tr >"+
+                            "<td>"+result[i]['id_pemesanan']+"</td>"+
+                            "<td>"+result[i]['id_anggota']+"</td>"+
+                            "<td>"+result[i]['nama_kategori']+"</td>"+
+                            "<td>"+result[i]['berat']+"</td>"+
+                            "<td>"+result[i]['tgl']+"</td>"+
+                            "<td class='center'>"+
+                                "<button class='btn btn-danger' style='height: 22px;font-size: 12px;padding-top: 2px;' onclick=ACCpesan('"+result[i]['id_pemesanan']+"')>ACC</button>"+
+                                "<button class='btn btn-danger' style='height: 22px;font-size: 12px;padding-top: 2px; margin-left:5px'  data-toggle='modal' data-target='#modalpreviewfoto' onclick=previewfoto('"+result[i]['id_pemesanan']+"')>Foto</button>"+
+                            "</td>"+
+                        "</tr>"
+                );
+          }
+        }
+    });
+}
+
 function ACC(id)
+{
+    $.ajax({
+        url:"<?php echo base_url('penjualan/accpending');?>",
+        type : "POST",
+        data:{
+            id_penjualan : id
+        },
+        success : function(data)
+        {
+            total(1);
+            pesan();
+        }
+    });
+}
+
+function ACCpesan(id)
+{
+    $.ajax({
+        url:"<?php echo base_url('penjualan/accpendingpesan');?>",
+        type : "POST",
+        data:{
+            id_pemesanan : id
+        },
+        success : function(data)
+        {
+            total(1);
+            pemesanan();
+        }
+    });
+}
+ 
+function preview(id)
 {
     $.ajax({
         url:"<?php echo base_url('penjualan/accpending');?>",
@@ -468,6 +523,26 @@ function previewbukti(id)
             $("#buktipembayaran").empty();
             $("#buktipembayaran").append(
                        "<image style='width: 50%;'src=<?php echo base_fotobukti()?>"+result[0]['bukti']+">"
+                );
+        }
+    });
+}
+
+function previewfoto(id)
+{
+    $.ajax({
+        url:"<?php echo base_url('penjualan/get_datapemesanan_pending');?>",
+        type : "POST",
+        data:{
+            id : id
+        },
+        success : function(data)
+        {
+            var result = $.parseJSON(data);
+            console.log(result);
+            $("#buktipreviewfoto").empty();
+            $("#buktipreviewfoto").append(
+                       "<image style='width: 50%;'src=<?php echo base_fotopemesanan()?>"+result[0]['foto']+">"
                 );
         }
     });
@@ -532,6 +607,7 @@ var index= parseInt(a);
     {
     include "modal_pesan.php";
     include "modal_preview.php";
+    include "modal_pemesanan.php";
     }
     ?>
 </body>

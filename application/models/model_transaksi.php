@@ -14,6 +14,18 @@ class model_transaksi extends ci_model
         return $this->db->query($query);   
     }
 
+    function tampilpemesananadmin($id)
+    {
+        $query= "SELECT*FROM pemesanan where id_pemesanan='".$id."'";
+        return $this->db->query($query);   
+    }
+
+    function tampilpemesananbyidpesan($id)
+    {
+        $query= "SELECT*FROM pemesanan where id_pemesanan='".$id."'";
+        return $this->db->query($query);   
+    }
+
     function tampiltransaksinoresi()
     {
         $query= "SELECT*FROM penjualan where resi is null";
@@ -100,14 +112,38 @@ class model_transaksi extends ci_model
 		else{ return 0;}
     }
 
+    function totalpemesananpending()
+    {
+        $jumlah= $this->db->query("SELECT count(id_pemesanan) as total from pemesanan where status=1");
+        $jumlahchart = $jumlah->row();
+        if($jumlahchart)
+        {
+            return $jumlahchart->total;
+        }
+		else{ return 0;}
+    }
+
     function accdatapending($id)
     {
         $this->db->query("UPDATE penjualan set status='Terverifikasi' where id_penjualan='".$id."'");
+    }
+    function accdatapendingpesanan($id)
+    {
+        $this->db->query("UPDATE pemesanan set status=7 where id_pemesanan='".$id."'");
     }
 
     function datapending()
     {
         return $this->db->query("SELECT*from penjualan where status='Proses' and bukti is not null");
+    }
+
+    function datapemesananpending()
+    {
+        return $this->db->query("SELECT  a.*, b.nama_kategori from pemesanan as a inner join kategori as b on b.id_kategori = a.id_kategori where status=1");
+    }
+    function datapemesananpendingbyid($id)
+    {
+        return $this->db->query("SELECT  a.*, b.nama_kategori from pemesanan as a inner join kategori as b on b.id_kategori = a.id_kategori where status=1 where id_pemesanan='".$id."'");
     }
 
     function chart()

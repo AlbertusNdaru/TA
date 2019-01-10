@@ -26,7 +26,7 @@ class penjualan extends CI_Controller{
     }
 
     function pemesanan()
-    {
+    {   check_session();
         $this->load->model('model_kategori');
         $id= $_SESSION['userdata']->id_anggota;
             $data['kategori']=  $this->model_kategori->tampilkan_data()->result();
@@ -35,9 +35,29 @@ class penjualan extends CI_Controller{
             $this->template->load('template1','userinterface/pemesanan',$data);
     }
 
-    function stokbarang()
+    function tampil_pemesanan_admin()
     {
         check_session();
+        $id = $this->input->post('id');
+        $data = $this->model_transaksi->tampilpemesananbyidpesan($id)->row();
+        $data['kategori']=  $this->model_kategori->tampilkan_data()->result();
+        $data['bahan']=  $this->model_bahan->tampilkan_data()->result();
+        $data['pengrajin']=  $this->model_pengrajin->tampildatapengrajin();
+        $this->template->load('template','pemesanan/pemesanan',$data);
+    }
+
+    
+    function tampil_pemesanan()
+    {
+        check_session();
+        $id = $this->input->post('id');
+        $data = $this->model_transaksi->tampilpemesananbyidpesan($id)->row();
+        echo json_encode($data);
+    }
+
+    function stokbarang()
+    {
+       check_session();
        $id= $this->input->post('id_barang');
        $data= $this->model_barang->tampil_data_stok_byId($id)->result();
        echo json_encode($data);
@@ -76,22 +96,25 @@ class penjualan extends CI_Controller{
       
     }
   
-    function post_transaksi()
+    function postpemesanan()
     { check_session();
-        $deskripsi= $this->post->input('deskripsi');
-        $kategori= $this->post->input('kategori');
-        $brtpesan= $this->post->input('brtpesan');
-        $jmlpesan= $this->post->input('jmlpesan');
+        $deskripsi= $this->input->post('deskripsi');
+        $kategori= $this->input->post('kategori');
+        $brtpesan= $this->input->post('brtpesan');
+        $jmlpesan= $this->input->post('jmlpesan');
+        $foto       =   'PSN'.get_current_date().$_FILES['berkas']['name'];
         $idanggota = $_SESSION['userdata']->id_anggota;
             $datatransaksi = array('id_anggota'=>$idanggota,
                                    'id_kategori'=>$kategori,
                                    'deskripsi'=>$deskripsi,
                                    'jumlah'=>$jmlpesan,
                                    'berat'=>$brtpesan,
-                                   'id_pemesanan'=>''
+                                   'id_pemesanan'=>'',
+                                   'foto'=>$foto
                                 );
             $jmlchart = $this->model_transaksi->insertpemesanan($datatransaksi);
-                //redirect("penjualan");
+            $this->aksi_upload($foto);
+            //redirect("penjualan");
         
     }
 
@@ -107,9 +130,28 @@ class penjualan extends CI_Controller{
         echo $jmlchart;
     }
 
+    
+    function get_pemesanan_pending()
+    {
+        $jmlchart = $this->model_transaksi->totalpemesananpending();
+        echo $jmlchart;
+    }
+
     function get_data_pending()
     {
         $datapending = $this->model_transaksi->datapending()->result();
+        echo json_encode($datapending);
+    }
+    function get_datapemesanan_pending()
+    {
+        $datapending = $this->model_transaksi->datapemesananpending()->result();
+        echo json_encode($datapending);
+    }
+
+    function get_datapemesanan_pending_byid()
+    {
+        $id= $this->input->post('id');
+        $datapending = $this->model_transaksi->datapemesananpendingbyid($id)->result();
         echo json_encode($datapending);
     }
 
@@ -124,6 +166,12 @@ class penjualan extends CI_Controller{
     { check_session();
         $id= $_POST['id_penjualan'];
         $datapending = $this->model_transaksi->accdatapending($id);
+    }
+
+    function accpendingpesan()
+    { check_session();
+        $id= $_POST['id_pemesanan'];
+        $datapending = $this->model_transaksi->accdatapendingpesanan($id);
     }
 
     
@@ -197,6 +245,23 @@ class penjualan extends CI_Controller{
         redirect("penjualan/penjualan_offline");
     }
 
+    public function aksi_upload($foto){
+		$config['upload_path']          = './img/pemesanan';
+		$config['allowed_types']        = '*';
+		$config['file_name']             = $foto;
+		//$config['max_width']            = 1024;
+		//$config['max_height']           = 768;
+ 
+		$this->load->library('upload', $config);
+ 
+		if ( ! $this->upload->do_upload('berkas')){
+			$error = array('error' => $this->upload->display_errors());
+			echo json_encode($error);
+		}else{
+            $data = array('upload_data' => $this->upload->data());
+            redirect('penjualan');
+        }
+    }
    
 
 
