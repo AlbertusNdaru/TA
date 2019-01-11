@@ -6,11 +6,13 @@ class penjualan extends CI_Controller{
         $this->load->model('model_barang');
         $this->load->model('model_transaksi');
         $this->load->model('model_bahan');
+        $this->load->model('model_kategori');
+        $this->load->model('model_pengrajin');
        
     }
 
     function index(){
-
+       
             $this->load->library('pagination');
             $config['base_url'] = base_url().'index.php/penjualan/index/';
             $config['total_rows'] = $this->model_barang->tampil_data()->num_rows();
@@ -27,10 +29,11 @@ class penjualan extends CI_Controller{
 
     function pemesanan()
     {   check_session();
-        $this->load->model('model_kategori');
+       
         $id= $_SESSION['userdata']->id_anggota;
             $data['kategori']=  $this->model_kategori->tampilkan_data()->result();
             $data['pesanan']=  $this->model_transaksi->tampilpemesanan($id)->result();
+            $data['pesananwaiting']= $this->model_transaksi->tampilpesananwaiting($id)->result();
             //$this->load->view('barang/form_input',$data);
             $this->template->load('template1','userinterface/pemesanan',$data);
     }
@@ -38,8 +41,8 @@ class penjualan extends CI_Controller{
     function tampil_pemesanan_admin()
     {
         check_session();
-        $id = $this->input->post('id');
-        $data = $this->model_transaksi->tampilpemesananbyidpesan($id)->row();
+        $id = $this->input->get('id');
+        $data['pesanan'] = $this->model_transaksi->tampilpemesananbyidpesan($id)->row();
         $data['kategori']=  $this->model_kategori->tampilkan_data()->result();
         $data['bahan']=  $this->model_bahan->tampilkan_data()->result();
         $data['pengrajin']=  $this->model_pengrajin->tampildatapengrajin();
@@ -170,8 +173,17 @@ class penjualan extends CI_Controller{
 
     function accpendingpesan()
     { check_session();
-        $id= $_POST['id_pemesanan'];
-        $datapending = $this->model_transaksi->accdatapendingpesanan($id);
+        $id = $_POST['id_pemesanan'];
+        $dataupdate=array('id_pengrajin'=>$_POST['id_pengrajin'],
+                          'tgl_pelunasan'=>$_POST['tgl_pelunasan'],
+                          'tgl_selesai'=>$_POST['tgl_selesai'],
+                          'id_bahan'=>$_POST['bahan'],
+                          'dp'=>$_POST['dp'],
+                          'kekurangan'=>$_POST['kurang'],
+                          'totalharga'=>$_POST['harga'],
+                          'status'=>'Waiting',);
+        $datapending = $this->model_transaksi->accdatapendingpesanan($id,$dataupdate);
+        redirect('barang');
     }
 
     

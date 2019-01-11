@@ -346,6 +346,23 @@ class transaksi extends ci_controller{
       
     }
 
+    function hitungharga()
+    {
+        $id_bahan = $this->input->post('id_bahan');
+        $id_pengrajin = $this->input->post('id_pengrajin');
+        $jml= $this->input->post('jml');
+        $berat = $this->input->post('berat');
+        $hargabahan= $this->model_transaksi->hargabahan($id_bahan)->row();
+        $hargajasa= $this->model_transaksi->hargajasapengrajin($id_pengrajin)->row();
+        $total = ($berat*$hargabahan->harga_bahan*$jml)+($jml*$hargajasa->harga_jasa);
+        $dp = round($total/2);
+        $kekurangan=$total;
+        $data=array('total'=>$total,
+                    'dp'=>$dp,
+                    'kekurangan'=>$kekurangan);
+        echo json_encode($data);
+    }
+
     function getdetailtransaksi_offline()
     {
         if($_SESSION['level']==1)
@@ -486,18 +503,45 @@ class transaksi extends ci_controller{
 
     function updatebuktipembayaran()
     {
-        $this->model_transaksi->updatebukti();
-        $this->aksi_upload_bukti();
+        $name = 'BUKTI'.get_current_date().$_FILES['berkas']['name'];
+        $this->model_transaksi->updatebukti($name);
+        $this->aksi_upload_bukti($name);
+    }
+
+    function updatebuktipembayaranpesanan()
+    {
+        $name = 'BUKTI'.get_current_date().$_FILES['berkasbayar']['name'];
+        $cek = $this->model_transaksi->updatebuktipemesanan($name);
+        if($cek)
+        {
+            $this->aksi_upload_buktipemesanan($name);
+        }
+      
     }
 
 
-    public function aksi_upload_bukti(){
-		$config['upload_path']          = './img/bukti_transaksi/';
+    public function aksi_upload_bukti($name){
+		$config['upload_path']          = './img/bukti_transaksi';
 		$config['allowed_types']        = '*';
- 
+        $config['file_name'] = $name;
 		$this->load->library('upload', $config);
  
 		if ( ! $this->upload->do_upload('berkas')){
+			$error = array('error' => $this->upload->display_errors());
+			echo json_encode($error);
+		}else{
+            $data = array('upload_data' => $this->upload->data());
+            redirect('penjualan');
+        }
+    }
+
+    public function aksi_upload_buktipemesanan($name){
+		$config['upload_path']          = './img/bukti_transaksi';
+		$config['allowed_types']        = '*';
+        $config['file_name'] = $name;
+		$this->load->library('upload', $config);
+ 
+		if ( ! $this->upload->do_upload('berkasbayar')){
 			$error = array('error' => $this->upload->display_errors());
 			echo json_encode($error);
 		}else{
