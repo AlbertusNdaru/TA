@@ -5,7 +5,7 @@
                        <h2 align="center" class="page-header" style="margin-top: 0px;">
                            Pemesanan Barang
                         </h2>
-                        <div class="panel panel-default" style=" background:brown; color:white;border-radius: 12px; ">
+                        <div class="panel panel-default" style=" background:#868e96; color:white;border-radius: 12px; ">
                             <div class="panel-body">
                             <?php echo form_open_multipart('penjualan/postpemesanan'); ?>
                                 <div class="form-group">
@@ -43,7 +43,7 @@
                     <h2 align="center" class="page-header" style="margin-top: 0px;">
                            Cek Pemesanan
                         </h2>
-                        <div class="panel panel-default" style=" background:brown; color:white; border-radius: 12px;">
+                        <div class="panel panel-default" style=" background:#868e96; color:white; border-radius: 12px;">
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label>No Pesanan</label>
@@ -90,7 +90,7 @@
                        <h2 align="center" class="page-header" style="margin-top: 0px;">
                            Pembayaran Transaksi
                         </h2>
-                        <div class="panel panel-default" style=" background:brown; color:white;border-radius: 12px; ">
+                        <div class="panel panel-default" style=" background:#868e96; color:white;border-radius: 12px; ">
                             <div class="panel-body">
                             <?php echo form_open_multipart('transaksi/updatebuktipembayaranpesanan'); ?>
                             <div class="form-group">
