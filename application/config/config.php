@@ -15,7 +15,7 @@
 |
 */
 // $config['base_url']	= 'http://localhost/pos/';
-$config['base_url']	= 'http://192.168.1.222:81/TA/';
+$config['base_url']	= 'http://localhost:8080/TA/';
 /*
 |--------------------------------------------------------------------------
 | Index File

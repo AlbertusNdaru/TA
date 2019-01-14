@@ -1,7 +1,7 @@
 <html style="overflow-y: hidden;">
 <head>
 <meta charset="utf-8">
-<title>TOKO LINTANG</title>
+<title>Djono Silver</title>
 <link href="<?php echo base_url().'assets/css/' ?>logincss.css" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>

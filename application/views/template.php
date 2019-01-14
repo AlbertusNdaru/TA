@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link href="<?php echo base_url(); ?>/template/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <title>Aplikasi Penjualan Toko Lintang</title>
+    <title>Djono Silver</title>
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url()?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>template/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
