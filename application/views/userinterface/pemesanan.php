@@ -86,9 +86,39 @@
                         </div>
                         <!-- /. PANEL  -->
                     </div>
+                    <div class="col-md-6" style="border-radius: 12px;  ">
+                       <h2 align="center" class="page-header" style="margin-top: 0px;">
+                           Pembayaran Transaksi
+                        </h2>
+                        <div class="panel panel-default" style=" background:brown; color:white;border-radius: 12px; ">
+                            <div class="panel-body">
+                            <?php echo form_open_multipart('transaksi/updatebuktipembayaranpesanan'); ?>
+                            <div class="form-group">
+                                    <label>No Pesanan</label>
+                                    <select id="pilidpesanan1" name="id_pemesanan" class="form-control" onchange="cekpemesanan()">
+                                    <option value=0>Pilih ID</option>
+                                        <?php foreach ($pesananwaiting as $k) {
+                                            echo "<option value='$k->id_pemesanan'>$k->id_pemesanan</option>";
+                                        } ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Upload Bukti Pembayaran</label>
+                                    <input required id="inputfoto" accept="image/x-png,image/gif,image/jpeg" type="file" class="form-control" name="berkasbayar" placeholder="upload">
+                                </div>
+                                <div class="form-group">
+                                    <label>Total Bayar (DP)</label>
+                                    <input  id="totalbayarDP" type="text" class="form-control" name="brtpesan" placeholder="0">
+                                </div>
+                                <button type="submit" id="btnsimpanpemesanan" name="submit" class="btn btn-primary btn-sm" >Simpan</button> | 
+                                <?php echo anchor('penjualan','Kembali',array('class'=>'btn btn-danger btn-sm'))?>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /. PANEL  -->
+                    </div>
                 </div>
                 <!-- /. ROW  -->
-
 <script>
 $("#jmlpesan").keydown(function(e) {
     //prevent both backspace and delete keys
@@ -156,4 +186,38 @@ function cekpesanan()
    }
    
 }
+
+function cekpemesanan()
+{
+ 
+    var id = $('#pilidpesanan1').val();
+    if(id!=0)
+   {
+    $.ajax({
+        url  :"<?php echo base_url('penjualan/tampil_pemesanan');?>",
+        type : 'POST',
+        data :{
+            id : id
+        },
+         success : function(data)
+         {
+            
+            var result = $.parseJSON(data);
+            $('#totalbayarDP').val(result['totalharga']);
+         
+         }
+            
+    })
+   }
+   else
+   {
+    $('#totalbayarDP').val(0);
+   }
+   
+
+   
+}
+
+
+
 </script>

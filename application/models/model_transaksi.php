@@ -69,13 +69,33 @@ class model_transaksi extends ci_model
         return $this->db->query('Select total_harga from penjualan where id_penjualan="'.$id_penjualan.'"');
     }
 
-    function updatebukti()
+    function hargabahan($id)
+    {
+        return $this->db->query('Select harga_bahan from bahan where id_bahan="'.$id.'"');
+    }
+
+    function hargajasapengrajin($id)
+    {
+        return $this->db->query('Select harga_jasa from pengrajin where id_pengrajin="'.$id.'"');
+    }
+
+ 
+
+    function updatebukti($name)
     {
         $id_penjualan       =   $this->input->post('transaksipending');
         $foto      =  $this->input->post('berkas');
-        $data       = array('bukti'=>$_FILES['berkas']['name']);
+        $data       = array('bukti'=>$name);
         $this->db->where('id_penjualan',$id_penjualan);
         $this->db->update('penjualan',$data);
+    }
+
+    function updatebuktipemesanan($name)
+    {
+        $id_pemesanan       =   $this->input->post('id_pemesanan');
+        $data       = array('bukti_pembayaran'=>$name);
+        $this->db->where('id_pemesanan',$id_pemesanan);
+        $this->db->update('pemesanan',$data);
     }
     
     function tampilkan_data_paging($config, $halaman)
@@ -123,13 +143,20 @@ class model_transaksi extends ci_model
 		else{ return 0;}
     }
 
+    function tampilpesananwaiting($id)
+    {
+        $query= "SELECT*FROM pemesanan where id_anggota='".$id."' and status=7";
+        return $this->db->query($query);   
+    }
+
     function accdatapending($id)
     {
         $this->db->query("UPDATE penjualan set status='Terverifikasi' where id_penjualan='".$id."'");
     }
-    function accdatapendingpesanan($id)
+    function accdatapendingpesanan($id,$dataupdate)
     {
-        $this->db->query("UPDATE pemesanan set status=7 where id_pemesanan='".$id."'");
+        $this->db->where('id_pemesanan',$id);
+        $this->db->update('pemesanan',$dataupdate);
     }
 
     function datapending()

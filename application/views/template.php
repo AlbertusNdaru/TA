@@ -479,18 +479,7 @@ function ACC(id)
 
 function ACCpesan(id)
 {
-    $.ajax({
-        url:"<?php echo base_url('penjualan/accpendingpesan');?>",
-        type : "POST",
-        data:{
-            id_pemesanan : id
-        },
-        success : function(data)
-        {
-            total(1);
-            pemesanan();
-        }
-    });
+     window.location="<?php echo base_url('penjualan/tampil_pemesanan_admin').'?id="+id+"'?>"
 }
  
 function preview(id)
