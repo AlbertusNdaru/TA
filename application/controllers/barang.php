@@ -72,9 +72,9 @@ class Barang extends CI_Controller{
             $harga      =   $this->input->post('harga');
             $keterangan =   $this->input->post('keterangan');
             $foto       =   'BRG_'.get_current_date().$_FILES['berkas']['name'];
-            if ($foto=="")
+            if ($_FILES['berkas']['name']=="")
             {
-                $this->model_barang->deleteimg($id);
+                
                 $data       = array('nama_barang'=>$nama,
                 'id_kategori'=>$kategori,
                 'id_bahan'=>$bahan,
@@ -83,6 +83,7 @@ class Barang extends CI_Controller{
             }
             else
             {
+                $this->model_barang->deleteimg($id);
                 $data       = array('nama_barang'=>$nama,
                 'id_kategori'=>$kategori,
                 'id_bahan'=>$bahan,
@@ -130,7 +131,7 @@ class Barang extends CI_Controller{
 			echo json_encode($error);
 		}else{
             $data = array('upload_data' => $this->upload->data());
-            redirect('barang');
+            //redirect('barang');
         }
     }
 }
