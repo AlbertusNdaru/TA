@@ -244,7 +244,6 @@ if(level == 1)
         type : "get",
         success : function(data)
         {
-            	console.log(data);
                 $("#chartpending").html(
                     "<div>"+data+"</div>"
                 );
