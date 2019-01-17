@@ -86,7 +86,7 @@
                         </li>-->
                     </div>
                     <ul id="sidebarnav">
-                    <li data-toggle="collapse" data-target="#menu">
+                    <li data-toggle="collapse" data-target="">
                     <a href="#" style="color : white"><i style="color:white;" class="fa fa fa-credit-card"></i>
                     <span class="hide-menu dropdown-toggle "> Laporan</span>
                     </li>
