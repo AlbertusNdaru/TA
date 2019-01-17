@@ -26,7 +26,7 @@
                         </li>
                         <li class="sidebar_nav sidebarnew" style="padding:10px;">
                             <a  onclick="page('3')" href="#" style="color : white">
-                            <span class="hide-menu"> Kategori Barang</span>
+                            <span class="hide-menu"> Kategori</span>
                             </a>
                         </li>
                         <li class="sidebar_nav sidebarnew" style="padding:10px;">
@@ -48,19 +48,27 @@
                             <span class="hide-menu">Penjualan</span>
                             </a>
                         </li>
-
+                        <li class="sidebar_nav sidebarnew" style="padding:10px;">
+                            <a  onclick="page('14')" href="#" style="color : white">
+                            <span class="hide-menu"> Pembelian</span>
+                            </a>
+                        </li>
+                        <li class="sidebar_nav sidebarnew" style="padding:10px;">
+                            <a  onclick="page('14')" href="#" style="color : white">
+                            <span class="hide-menu"> Pemesanan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar_nav sidebarnew" style="padding:10px;">
+                            <a  onclick="page('14')" href="#" style="color : white">
+                            <span class="hide-menu"> Pesan Pengrajin</span>
+                            </a>
+                        </li>
                         <li class="sidebar_nav sidebarnew" style="padding:10px; ">
                             <a  onclick="page('8')" href="#" style="color : white">
                             <span class="hide-menu">Input Resi</span>
                             </a>
                         </li>
-                     
-                        <li class="sidebar_nav sidebarnew" style="padding:10px;">
-                            <a  onclick="page('14')" href="#" style="color : white">
-                            <span class="hide-menu"> Pembelian Barang</span>
-                            </a>
-                        </li>
-                    
+                    <!--
                         <li class="sidebar_nav sidebarnew" style="padding:10px;">
                             <a  onclick="page('11')" href="#" style="color : white">
                             <span class="hide-menu">Laporan</span>
@@ -75,7 +83,37 @@
                             <a href="<?php echo base_url().'transaksi/laporanbarang'?>" target="_blank" style="color : white">
                             <span class="hide-menu">Cetak Barang</span>
                             </a>
+                        </li>-->
+                    </div>
+                    <ul id="sidebarnav">
+                    <li data-toggle="collapse" data-target="#menu">
+                    <a href="#" style="color : white"><i style="color:white;" class="fa fa fa-credit-card"></i>
+                    <span class="hide-menu dropdown-toggle "> Laporan</span>
+                    </li>
+                                        
+        </ul>
+                    <div id="menu" class="collapse" style="background-color:#1c2128; list-style:none; padding-left:40px; ">
+                        <li class="sidebar_nav sidebarnew" style="padding:10px; ">
+                            <a  onclick="page('7')" href="#" style="color : white">
+                            <span class="hide-menu">Penjualan</span>
+                            </a>
                         </li>
+                        <li class="sidebar_nav sidebarnew" style="padding:10px;">
+                            <a  onclick="page('14')" href="#" style="color : white">
+                            <span class="hide-menu"> Pembelian</span>
+                            </a>
+                        </li>
+                        <li class="sidebar_nav sidebarnew" style="padding:10px;">
+                            <a  onclick="page('14')" href="#" style="color : white">
+                            <span class="hide-menu"> Pemesanan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar_nav sidebarnew" style="padding:10px;">
+                            <a  onclick="page('14')" href="#" style="color : white">
+                            <span class="hide-menu"> Pesan Pengrajin</span>
+                            </a>
+                        </li>
+                        
                     </div>
 
 <style>
