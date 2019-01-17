@@ -86,13 +86,13 @@
                         </li>-->
                     </div>
                     <ul id="sidebarnav">
-                    <li data-toggle="collapse" data-target="">
+                    <li data-toggle="collapse" data-target="#menulaporan">
                     <a href="#" style="color : white"><i style="color:white;" class="fa fa fa-credit-card"></i>
                     <span class="hide-menu dropdown-toggle "> Laporan</span>
                     </li>
                                         
         </ul>
-                    <div id="menu" class="collapse" style="background-color:#1c2128; list-style:none; padding-left:40px; ">
+                    <div id="menulaporan" class="collapse" style="background-color:#1c2128; list-style:none; padding-left:40px; ">
                         <li class="sidebar_nav sidebarnew" style="padding:10px; ">
                             <a  onclick="page('7')" href="#" style="color : white">
                             <span class="hide-menu">Penjualan</span>
