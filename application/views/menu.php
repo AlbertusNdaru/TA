@@ -110,7 +110,7 @@
                         </li>
                         <li class="sidebar_nav sidebarnew" style="padding:10px;">
                             <a  onclick="page('14')" href="#" style="color : white">
-                            <span class="hide-menu"> Pesan Pengrajin</span>
+                            <span class="hide-menu"> Barang</span>
                             </a>
                         </li>
                         
