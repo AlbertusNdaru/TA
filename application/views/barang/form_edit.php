@@ -1,7 +1,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2 align="center" class="page-header" style="margin-top: 0px; margin-bottom: 40px;">
-                            TOKO LINTANG<br>Edit Data Barang
+                            <br>Edit Data Barang
                         </h2>
                     </div>
                 </div> 
