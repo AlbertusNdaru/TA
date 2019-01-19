@@ -583,6 +583,9 @@ var index= parseInt(a);
     case 14:
     window.location="<?php  echo base_url().'pembelian'?>";
     break;
+    case 15:
+    window.location="<?php  echo base_url().'pemesanan'?>";
+    break;
 }
 }
 
