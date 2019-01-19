@@ -103,7 +103,7 @@ function detail()
 
  function belibarang(id)
  { 
-    if ('<?php if(isset($_SESSION["userdata"])) {echo true;} else {echo false;}?>')
+    if ('<?php if(isset($_SESSION["userdata"]->id_anggota)) {echo true;} else {echo false;}?>')
     {
         var stok = parseInt($('#'+id).val());
         if(stok<1)

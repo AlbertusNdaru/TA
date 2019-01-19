@@ -28,42 +28,52 @@ class penjualan extends CI_Controller{
     }
 
     function pemesanan()
-    {   check_session();
-       
-        $id= $_SESSION['userdata']->id_anggota;
+    {   if(check_session())
+        {
+            $id= $_SESSION['userdata']->id_anggota;
             $data['kategori']=  $this->model_kategori->tampilkan_data()->result();
             $data['pesanan']=  $this->model_transaksi->tampilpemesanan($id)->result();
             $data['pesananwaiting']= $this->model_transaksi->tampilpesananwaiting($id)->result();
             //$this->load->view('barang/form_input',$data);
             $this->template->load('template1','userinterface/pemesanan',$data);
+        }
+       
+        
     }
 
     function tampil_pemesanan_admin()
     {
-        check_session();
-        $id = $this->input->get('id');
-        $data['pesanan'] = $this->model_transaksi->tampilpemesananbyidpesan($id)->row();
-        $data['kategori']=  $this->model_kategori->tampilkan_data()->result();
-        $data['bahan']=  $this->model_bahan->tampilkan_data()->result();
-        $data['pengrajin']=  $this->model_pengrajin->tampildatapengrajin();
-        $this->template->load('template','pemesanan/pemesanan',$data);
+        if(check_session())
+        {
+            $id = $this->input->get('id');
+            $data['pesanan'] = $this->model_transaksi->tampilpemesananbyidpesan($id)->row();
+            $data['kategori']=  $this->model_kategori->tampilkan_data()->result();
+            $data['bahan']=  $this->model_bahan->tampilkan_data()->result();
+            $data['pengrajin']=  $this->model_pengrajin->tampildatapengrajin();
+            $this->template->load('template','pemesanan/pemesanan',$data);
+        }
+        
     }
 
     
     function tampil_pemesanan()
     {
-        check_session();
+        if(check_session())
+        {
         $id = $this->input->post('id');
         $data = $this->model_transaksi->tampilpemesananbyidpesan($id)->row();
         echo json_encode($data);
+        }
     }
 
     function stokbarang()
     {
-       check_session();
+        if(check_session())
+        {
        $id= $this->input->post('id_barang');
        $data= $this->model_barang->tampil_data_stok_byId($id)->result();
        echo json_encode($data);
+        }
     }
 
     function penjualan_offline(){
@@ -100,7 +110,8 @@ class penjualan extends CI_Controller{
     }
   
     function postpemesanan()
-    { check_session();
+    { if(check_session())
+        {
         $deskripsi= $this->input->post('deskripsi');
         $kategori= $this->input->post('kategori');
         $brtpesan= $this->input->post('brtpesan');
@@ -117,14 +128,17 @@ class penjualan extends CI_Controller{
                                 );
             $jmlchart = $this->model_transaksi->insertpemesanan($datatransaksi);
             $this->aksi_upload($foto);
+         }
             //redirect("penjualan");
         
     }
 
     function get_totalchart()
-    { check_session();
+    { if(check_session())
+        {
         $jmlchart = $this->model_transaksi->totalchart();
         echo $jmlchart;
+        }
     }
 
     function get_trans_pending()

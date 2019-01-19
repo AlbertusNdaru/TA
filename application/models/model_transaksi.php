@@ -271,7 +271,7 @@ class model_transaksi extends ci_model
         $check = $this->db->query($query);
         $data = $check->row();
         $id_pemesanan = $data->maxKode;
-        echo $id_penjualan;
+       
 		$noUrut = (int) substr($id_pemesanan,3,3);
         $noUrut++;
         echo $noUrut;

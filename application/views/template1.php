@@ -103,7 +103,7 @@
                         <!-- ============================================================== -->
                         <!-- Profile -->
                         <!-- ============================================================== -->
-                        <?php if (isset($_SESSION['userdata'])) {?>
+                        <?php if (isset($_SESSION['userdata']->id_anggota)) {?>
                          <!-- <li><a href="<?php  echo base_url()?>"><span class='glyphicon glyphicon-home'></span>  Home  </a></li> -->
 				        <li><button  style="margin-top: 6px; margin-right:5px;background-color:silver; color:black;" class='btn btn-primary'  onclick="page('1')" ><span class='glyphicon glyphicon-shopping-cart'></span>  Cart <span class="badge" id="charttotal"></span> </button></li>
                         <!-- <li><button  style="margin-top: 6px; margin-right:5px;background-color:deeppink" class='btn btn-primary' id="confirmpesan" href="chat.php" data-toggle="modal" data-target="#modalpesan"><span class='glyphicon glyphicon-comment'></span>  Pesan  </button></li> -->
@@ -202,7 +202,8 @@
        
 
 <script type="text/javascript">
-window.onload=total('<?php if(isset($_SESSION["userdata"])){ echo $_SESSION['level'];} else {echo null;}?>');
+
+window.onload=total('<?php if(isset($_SESSION["userdata"]->id_anggota)){ echo $_SESSION['level'];} else {echo null;}?>');
 
 function validate(evt) {
   var theEvent = evt || window.event;
@@ -391,7 +392,7 @@ function status()
         $.ajax({
         url:"<?php echo base_url('penjualan/get_data_transaksiuser');?>",
         type : "POST",
-        data : {id : '<?php if(isset($_SESSION["userdata"])) {echo $_SESSION['userdata']->id_anggota;} else{echo null;}?>'},
+        data : {id : '<?php if(isset($_SESSION["userdata"]->id_anggota)) {echo $_SESSION['userdata']->id_anggota;} else{echo null;}?>'},
         success : function(data)
         {
           var result = $.parseJSON(data);

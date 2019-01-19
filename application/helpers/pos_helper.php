@@ -4,7 +4,7 @@ function check_session()
 {
     if(!isset($_SESSION['userdata']))
     {
-        redirect('login');
+        return false;
     }
     else
     {
@@ -17,6 +17,7 @@ function check_session()
        {
         $_SESSION['userdata']->level = 1;
        }
+       return true;
     }
   
 

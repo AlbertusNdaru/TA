@@ -512,10 +512,7 @@ class transaksi extends ci_controller{
     {
         $name = 'BUKTI'.get_current_date().$_FILES['berkasbayar']['name'];
         $cek = $this->model_transaksi->updatebuktipemesanan($name);
-        if($cek)
-        {
             $this->aksi_upload_buktipemesanan($name);
-        }
       
     }
 
