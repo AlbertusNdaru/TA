@@ -1,7 +1,7 @@
 <div class="row">
                     <div class="col-md-12">
                         <h3 align="center" class="page-header" style="margin-top: 0px; margin-bottom: 40px;">
-                           Data Transaksi
+                           Data Penjualan
                         </h3>
                     </div>
                 </div> 
@@ -16,9 +16,9 @@
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>Nomer Transaksi</th>
+                                                <th>Nomer Penjualan</th>
                                                 <th>Tanggal Transaksi</th>
-                                                <th>Total Transaksi</th>
+                                                <th>Total Penjualan</th>
                                                 <th>Status</th>
                                                 <th>Preview Detail</th>
                                             </tr>
