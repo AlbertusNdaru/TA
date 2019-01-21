@@ -33,7 +33,7 @@
                                              
                                                 <td><?php echo $r->nama_jasa_layanan_kirim?></td>
                                                 <td class="center">
-                                                   <?php echo anchor('jasakirim/edit/'.$r->id_jasa_layanan_kirim,'Edit','class="btn btn-primary"'); ?>
+                                                   <?php echo anchor('pesanpengrajin/edit/'.$r->id_jasa_layanan_kirim,'Edit','class="btn btn-primary"'); ?>
                                                    <?php echo anchor('jasakirim/delete/'.$r->id_jasa_layanan_kirim,'Delete','class="btn btn-danger"'); ?>
                                                 </td>
                                             </tr>

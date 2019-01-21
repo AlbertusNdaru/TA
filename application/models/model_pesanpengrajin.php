@@ -1,5 +1,5 @@
 <?php
-class model_jasakirim extends CI_Model{
+class model_pesanpengrajin extends CI_Model{
     
     
     

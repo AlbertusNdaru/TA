@@ -1,5 +1,5 @@
 <?php
-class jasakirim extends CI_Controller{
+class pesanpengrajin extends CI_Controller{
     
     function __construct() {
         parent::__construct();
@@ -8,7 +8,7 @@ class jasakirim extends CI_Controller{
     }
     
     function index(){
-            $data['record']=$this->model_pesanpengrajin->tampilkan_data_paging($config,$halaman);
+            $data['record']=$this->model_pesanpengrajin->tampilkan_data();
             $this->template->load('template','pesanpengrajin/lihat_data',$data);
     }
     
