@@ -5,7 +5,7 @@ class model_pesanpengrajin extends CI_Model{
     
     function tampilkan_data(){
         
-        return $this->db->get('pemesanan_pengrajin');
+        return $this->db->query('SELECT * from pemesanan where id_pengrajin is not null and bukti_pembayaran is not null')->rseult();
     }
     
   function tampilkan_data_paging($config,$halaman)

@@ -18,6 +18,14 @@ class pemesanan extends CI_Controller{
         $this->model_pemesanan->updatestatuspemesanan($id);
         redirect('pemesanan');
     }
+    
+    function tampil_data_pemesanan()
+    {
+        $data['record']=$this->model_pemesanan->tampilkan_data_pemesanan();
+        $this->template->load('template','pemesanan/lihat_data',$data);
+    } 
+
+
 
 
 }

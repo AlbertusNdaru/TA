@@ -90,12 +90,10 @@ class model_transaksi extends ci_model
         $this->db->update('penjualan',$data);
     }
 
-    function updatebuktipemesanan($name)
+    function updatebuktipemesanan($name,$dp)
     {
         $id_pemesanan       =   $this->input->post('id_pemesanan');
-        $data       = array('bukti_pembayaran'=>$name);
-        $this->db->where('id_pemesanan',$id_pemesanan);
-        $this->db->update('pemesanan',$data);
+        $this->db->query('UPDATE pemesanan set bukti_pembayaran="'.$name.'", kekurangan=kekurangan-'.$dp.' where id_pemesanan="'.$id_pemesanan.'"');
     }
     
     function tampilkan_data_paging($config, $halaman)

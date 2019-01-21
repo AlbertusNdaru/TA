@@ -511,7 +511,8 @@ class transaksi extends ci_controller{
     function updatebuktipembayaranpesanan()
     {
         $name = 'BUKTI'.get_current_date().$_FILES['berkasbayar']['name'];
-        $cek = $this->model_transaksi->updatebuktipemesanan($name);
+        $dp = $_POST['byrdp'];
+        $cek = $this->model_transaksi->updatebuktipemesanan($name,$dp);
             $this->aksi_upload_buktipemesanan($name);
       
     }

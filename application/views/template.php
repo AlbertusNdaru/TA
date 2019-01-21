@@ -587,7 +587,7 @@ var index= parseInt(a);
     window.location="<?php  echo base_url().'pemesanan'?>";
     break;
     case 16:
-    window.location="<?php  echo base_url().'pesan_pengrajin'?>";
+    window.location="<?php  echo base_url().'pemesanan/tampil_data_pemesanan'?>";
     break;
 }
 }

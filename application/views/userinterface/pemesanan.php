@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Total Bayar (DP)</label>
-                                    <input  id="totalbayarDP" type="text" class="form-control" name="brtpesan" placeholder="0">
+                                    <input  id="totalbayarDP" type="text" class="form-control" name="byrdp" placeholder="0">
                                 </div>
                                 <button type="submit" id="btnsimpanpemesanan" name="submit" class="btn btn-primary btn-sm" >Simpan</button> | 
                                 <?php echo anchor('penjualan','Kembali',array('class'=>'btn btn-danger btn-sm'))?>
@@ -203,7 +203,7 @@ function cekpemesanan()
          {
             
             var result = $.parseJSON(data);
-            $('#totalbayarDP').val(result['totalharga']);
+            $('#totalbayarDP').val(result['dp']);
          
          }
             
