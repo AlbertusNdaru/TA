@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 10, 2019 at 10:50 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 5.6.38
+-- Host: 127.0.0.1:3307
+-- Generation Time: Jan 21, 2019 at 03:14 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 5.6.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -114,8 +114,8 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `id_kategori`, `id_bahan`, `nama_barang`, `harga_barang`, `berat_satuan`, `foto`, `keterangan`, `stok`) VALUES
-('BRG001', 'KTG001', 'BHN002', 'Cincin Nikah', 2000000, 21, 'BRG_20190108_105731cinkah22.jpg', 'Ready', 9),
-('BRG002', 'KTG001', 'BHN001', 'Cincin Nikah', 2000000, 30, 'BRG_20190108_105804cinkah22.jpg', 'Ready', 8);
+('BRG001', 'KTG001', 'BHN001', 'Cincin Nikah', 2000000, 21, 'BRG_20190120_17543141fH9PAh6IL.jpg', 'Ready', 9),
+('BRG002', 'KTG001', 'BHN001', 'Cincin Nikah', 2000000, 30, 'BRG_20190120_1754412015-fashion-925-silver-diamond-rings-wedding.jpg', 'Ready', 7);
 
 -- --------------------------------------------------------
 
@@ -289,7 +289,8 @@ INSERT INTO `keranjang` (`id_keranjang`, `id_anggota`, `id_penjualan`, `id_baran
 ('KRJ020', 'AGT001', 'PNJ009', 'BRG004', 1, '2018-12-12 16:37:01', 1),
 ('KRJ021', 'AGT001', 'PNJ009', 'BRG005', 1, '2018-12-12 16:37:05', 1),
 ('KRJ022', 'AGT001', 'PNJ010', 'BRG002', 2, '2019-01-08 14:45:47', 1),
-('KRJ023', 'AGT001', 'PNJ010', 'BRG001', 1, '2019-01-08 14:45:48', 1);
+('KRJ023', 'AGT001', 'PNJ010', 'BRG001', 1, '2019-01-08 14:45:48', 1),
+('KRJ024', 'AGT001', 'PNJ011', 'BRG002', 1, '2019-01-21 15:40:01', 1);
 
 --
 -- Triggers `keranjang`
@@ -373,7 +374,9 @@ CREATE TABLE `pemesanan` (
 --
 
 INSERT INTO `pemesanan` (`id_pemesanan`, `id_anggota`, `id_kategori`, `id_pengrajin`, `tgl_pelunasan`, `tgl_selesai`, `foto`, `id_bahan`, `dp`, `kekurangan`, `jumlah`, `totalharga`, `berat`, `status`, `cek`, `tgl`, `deskripsi`, `bukti_pembayaran`) VALUES
-('PSN003', 'AGT001', 'KTG001', NULL, NULL, NULL, 'PSN20190110_153640cinkah22.jpg', NULL, NULL, NULL, 1, 0, 14, 'Waiting', 0, '2019-01-10 15:36:40', 'sdfsfsdf', NULL);
+('PSN003', 'AGT001', 'KTG001', NULL, NULL, NULL, 'PSN20190110_153640cinkah22.jpg', NULL, NULL, NULL, 1, 0, 14, 'Waiting', 0, '2019-01-10 15:36:40', 'sdfsfsdf', 'BUKTI20190119_203038large.jpg'),
+('PSN004', 'AGT001', 'KTG002', 'PNR002', '2019-01-28', '2019-01-30', 'PSN20190119_1950514bf3415ef6aea0b2a1ae865a6dd3a50c.jpg', 'BHN002', 2600000, 5200000, 1, 5200000, 10, 'Proses', 0, '2019-01-19 19:50:51', 'asdfghjkl', 'BUKTI20190119_19540636358796_284292782114280_7234871216111091712_o.jpg'),
+('PSN005', 'AGT001', 'KTG002', 'PNR001', '0000-00-00', '0000-00-00', 'PSN20190121_19244643235_main.jpg', 'BHN001', 0, 0, 2, 0, 8, 'Waiting', 0, '2019-01-21 19:24:46', 'ddddd', NULL);
 
 -- --------------------------------------------------------
 
@@ -382,10 +385,9 @@ INSERT INTO `pemesanan` (`id_pemesanan`, `id_anggota`, `id_kategori`, `id_pengra
 --
 
 CREATE TABLE `pemesanan_pengrajin` (
-  `id_pemesanan_pengrajin` varchar(11) NOT NULL,
+  `id_pemesan_pengrajin` varchar(11) NOT NULL,
   `id_pemesanan` varchar(11) DEFAULT NULL,
   `id_pengrajin` varchar(11) DEFAULT NULL,
-  `id_barang` varchar(11) DEFAULT NULL,
   `banyak` float DEFAULT NULL,
   `harga_beli` float DEFAULT NULL,
   `jumlah_bayar` double DEFAULT NULL
@@ -444,7 +446,8 @@ INSERT INTO `penjualan` (`id_penjualan`, `id_jasa_layanan_kirim`, `tgl`, `ongkir
 ('PNJ007', 'JASA001', '2018-12-12 10:07:16', 55000, 11455000, 'Dikirim', 'header.png', '010180102446518'),
 ('PNJ008', 'JASA003', '2018-12-12 11:40:05', 26000, 10676000, 'Terkirim', 'header.png', 'RT086052373DE'),
 ('PNJ009', 'JASA002', '2018-12-12 16:37:23', 43000, 610693000, 'Dikirim', 'murni.png', '030072204280'),
-('PNJ010', 'JASA001', '2019-01-08 14:46:11', 36000, 6036000, 'Dikirim', 'beach-exotic-holiday-248797.jpg', '010180102446518');
+('PNJ010', 'JASA001', '2019-01-08 14:46:11', 36000, 6036000, 'Dikirim', 'beach-exotic-holiday-248797.jpg', '010180102446518'),
+('PNJ011', 'JASA001', '2019-01-21 16:59:11', 24000, 2024000, 'Proses', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -534,7 +537,7 @@ ALTER TABLE `pemesanan`
 -- Indexes for table `pemesanan_pengrajin`
 --
 ALTER TABLE `pemesanan_pengrajin`
-  ADD PRIMARY KEY (`id_pemesanan_pengrajin`);
+  ADD PRIMARY KEY (`id_pemesan_pengrajin`);
 
 --
 -- Indexes for table `pengrajin`
