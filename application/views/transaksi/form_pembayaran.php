@@ -1,7 +1,7 @@
 <div class="row">
                     <div class="col-md-12">
                         <h2 class="page-header" style="margin-top: 0px;margin-bottom: 40px;">
-                            Pembayaran (No Rekening 0373952581 A/N Albertus Ndaru K)
+                            Pembayaran (No Rekening 0373952581 A/N Sinta Rostika)
                         </h2>
                     </div>
 </div> 

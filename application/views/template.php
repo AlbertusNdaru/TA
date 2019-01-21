@@ -38,7 +38,7 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">TUGAS AKHIR SHINTA 2018</p>
+            <p class="loader__label">TUGAS AKHIR SINTA 2018</p>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -188,7 +188,7 @@
     </div>
                         </div>
     <footer class="footer" align="center" style="transform: translateX(9%);">
-                TUGAS AKHIR SHINTA 2018
+                TUGAS AKHIR SINTA 2018
             </footer>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
@@ -585,6 +585,9 @@ var index= parseInt(a);
     break;
     case 15:
     window.location="<?php  echo base_url().'pemesanan'?>";
+    break;
+    case 16:
+    window.location="<?php  echo base_url().'pesan_pengrajin'?>";
     break;
 }
 }

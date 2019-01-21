@@ -28,7 +28,7 @@
     <!-- Login Form -->
 	<?php echo form_open('auth/loginuser'); ?>
 
-      <input type="text" id="email" class="fadeIn second" name="email" placeholder="Email">
+      <input type="text" id="email" class="fadeIn second" name="email" placeholder="Username">
       <input  type="password" id="password" class="fadeIn third" name="password" placeholder="password" style="
     background-color: rgb(246, 246, 246);
     color: rgb(13, 13, 13);

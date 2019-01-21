@@ -49,7 +49,7 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">TUGAS AKHIR SHINTA 2018</p>
+            <p class="loader__label">TUGAS AKHIR SINTA 2018</p>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -185,7 +185,7 @@
             <!-- ============================================================== -->
         </div>
         <footer class="footer" align="center">
-        TUGAS AKHIR SHINTA 2018
+        TUGAS AKHIR SINTA 2018
     </footer>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
