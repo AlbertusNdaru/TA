@@ -15,27 +15,27 @@ class pesanpengrajin extends CI_Controller{
     function post()
     {
         if(isset($_POST['submit'])){
-            // proses jasakirim
+            // proses pesanpengrajin
             $this->model_pesanpengrajin->post();
-            redirect('jasakirim');
+            redirect('pesanpengrajin');
         }
         else{
-            //$this->load->view('jasakirim/form_input');
-            $this->template->load('template','jasakirim/form_input');
+            //$this->load->view('pesanpengrajin/form_input');
+            $this->template->load('template','pesanpengrajin/form_input');
         }
     }
     
     function edit()
     {
         if(isset($_POST['submit'])){
-            // proses jasakirim
+            // proses pesanpengrajin
             $this->model_pesanpengrajin->edit();
-            redirect('jasakirim');
+            redirect('pesanpengrajin');
         }
         else{
             $id=  $this->uri->segment(3);
             $data['record']=  $this->model_pesanpengrajin->get_one($id)->row_array();
-            $this->template->load('template','jasakirim/form_edit',$data);
+            $this->template->load('template','pesanpengrajin/form_edit',$data);
         }
     }
     
@@ -44,6 +44,6 @@ class pesanpengrajin extends CI_Controller{
     {
         $id=  $this->uri->segment(3);
         $this->model_pesanpengrajin->delete($id);
-        redirect('jasakirim');
+        redirect('pesanpengrajin');
     }
 }
