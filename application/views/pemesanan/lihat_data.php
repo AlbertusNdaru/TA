@@ -39,8 +39,7 @@
                                                 <td><?php echo $r->dp?></td>
                                                 <td><?php echo $r->kekurangan?></td>
                                                 <td class="center">
-                                                   <!-- <?php echo anchor('pesanpengrajin/edit/'.$r->id_pemesanan,'Edit','class="btn btn-primary"'); ?> -->
-                                                   <!-- <?php echo anchor('pemesanan/delete/'.$r->id_pemesanan,'Delete','class="btn btn-danger"'); ?> -->
+                                                   <?php echo anchor('pemesanan/delete/'.$r->id_pemesanan,'Delete','class="btn btn-danger"'); ?>
                                                 </td>
                                             </tr>
                                         <?php  } ?>

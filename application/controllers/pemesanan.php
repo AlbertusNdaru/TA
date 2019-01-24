@@ -25,6 +25,12 @@ class pemesanan extends CI_Controller{
         $this->template->load('template','pemesanan/lihat_data',$data);
     } 
 
+    function delete()
+    {
+        $id=  $this->uri->segment(3);
+        $this->model_pemesanan->delete($id);
+        redirect('pemesanan/tampil_data_pemesanan');
+    }
 
 
 
