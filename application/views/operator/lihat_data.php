@@ -2,7 +2,7 @@
                     <div class="col-md-12">
                     <img style="display: block;margin-left: auto;margin-right: auto; width: 200px;" src="<?php echo base_url()?>assets/img/lintang.png">
                     <h3 align="center" class="page-header">
-                           TOKO LINTANG<br>Data Operator
+                           Djono Silver<br>Data Operator
                         </h3>
                     </div>
                 </div> 

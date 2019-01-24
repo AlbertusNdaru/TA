@@ -1,9 +1,9 @@
-                <div class="row">
+<div class="row">
                     <div class="col-md-12">
-                    <img style="display: block;margin-left: auto;margin-right: auto; width: 200px;" src="<?php echo base_url()?>assets/img/lintang.png">
+                    
                         <h2 align="center" class="page-header">
                             Djono Silver <br>
-                            Laporan Transaksi
+                            Laporan Penjualan
                         </h2>
                     </div>
                 </div> 
@@ -13,7 +13,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <?php echo form_open('transaksi/laporan', array('class'=>'form-inline')); ?>
+                                <?php echo form_open('laporan/laporan', array('class'=>'form-inline')); ?>
                                 <table>    
                                     <tr class="form-group" >
                                         <label for="exampleInputName2" style="margin-right: 10px;">Tanggal</label>
