@@ -589,6 +589,9 @@ var index= parseInt(a);
     case 16:
     window.location="<?php  echo base_url().'pemesanan/tampil_data_pemesanan'?>";
     break;
+    case 17:
+    window.location="<?php  echo base_url().'laporan'?>";
+    break;
 }
 }
 

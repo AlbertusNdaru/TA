@@ -94,7 +94,7 @@
         </ul>
                     <div id="menulaporan" class="collapse" style="background-color:#1c2128; list-style:none; padding-left:40px; ">
                         <li class="sidebar_nav sidebarnew" style="padding:10px; ">
-                            <a  onclick="page('7')" href="#" style="color : white">
+                            <a  onclick="page('17')" href="#" style="color : white">
                             <span class="hide-menu">Penjualan</span>
                             </a>
                         </li>
