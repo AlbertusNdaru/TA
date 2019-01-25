@@ -18,7 +18,7 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-       <h1>DJONOSILVER</h1>
+       <h1>DJONO SILVER</h1>
     </div>
 
     <!-- Login Form -->

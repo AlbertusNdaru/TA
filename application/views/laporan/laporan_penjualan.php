@@ -34,39 +34,45 @@
                         <!-- /. PANEL  -->
                     </div>
 
-
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
+        <div class="row">                  
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-bordered">
+                                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>No.</th>
+                                                <th>Nomer Penjualan</th>
+                                                <th>Jasa Kirim</th>
                                                 <th>Tanggal Transaksi</th>
-                                                <th>Id_Pembeli</th>
-                                                <th>Total Transaksi</th>
+                                                <th>Ongkos Kirim</th>
+                                                <th>Total Penjualan</th>
+                                                <th>Status</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php $no=1; $total=0; foreach ($record->result() as $r){ ?>
+                                        <?php 
+                                        $no = $this->uri->segment('3');
+                                        foreach ($record->result() as $r) { ?>
                                             <tr class="gradeU">
-                                                <td><?php echo $no ?></td>
-                                                <td><?php echo $r->tanggal ?></td>
-                                                <td><?php echo $r->id_member ?></td>
-                                                <td>Rp <?php echo number_format($r->jumlahtotal,2) ?></td>
+                                                <td><?php echo $r->id_penjualan ?></td>
+                                                <td><?php echo $r->nama_jasa_layanan_kirim ?></td>
+                                                <td><?php echo $r->tgl ?></td>
+                                                <td><?php echo $r->ongkir ?></td>
+                                                <td>Rp. <?php echo number_format($r->total_harga,2) ?></td>   
+                                                <td><?php echo $r->status?></td>  
+                                               
                                             </tr>
-                                        <?php $no++; $total=$total+$r->jumlahtotal; } ?>
-                                            <tr>
-                                                <td colspan="3" style="text-align: right;">Total</td>
-                                                <td>Rp <?php echo  number_format($total,2);?></td>
-                                            </tr>
+                                        <?php } ?>
                                         </tbody>
                                     </table>
+                                   
                                 </div>
-                                <!-- /. TABLE  -->
+                                
                             </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- /. ROW  -->
+               </div>
+                       <!-- /. PANEL  -->
+    </div>
+                

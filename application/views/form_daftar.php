@@ -20,7 +20,7 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-       <h1>TOKO LINTANG</h1>
+       <h1>Djono Silver</h1>
     </div>
 
     <!-- Login Form -->

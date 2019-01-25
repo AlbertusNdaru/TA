@@ -1,7 +1,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="page-header" align="Center">
-                            TOKO LINTANG <small>PENJUALAN BARANG</small>
+                            Djono Silver <small>PENJUALAN BARANG</small>
                         </h2>
                     </div>
                 </div> 
