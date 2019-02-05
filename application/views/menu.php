@@ -99,17 +99,17 @@
                             </a>
                         </li>
                         <li class="sidebar_nav sidebarnew" style="padding:10px;">
-                            <a  onclick="page('14')" href="#" style="color : white">
+                            <a  onclick="page('20')" href="#" style="color : white">
                             <span class="hide-menu"> Pembelian</span>
                             </a>
                         </li>
                         <li class="sidebar_nav sidebarnew" style="padding:10px;">
-                            <a  onclick="page('14')" href="#" style="color : white">
+                            <a  onclick="page('19')" href="#" style="color : white">
                             <span class="hide-menu"> Pemesanan</span>
                             </a>
                         </li>
                         <li class="sidebar_nav sidebarnew" style="padding:10px;">
-                            <a  onclick="page('14')" href="#" style="color : white">
+                            <a  onclick="page('18')" href="#" style="color : white">
                             <span class="hide-menu"> Barang</span>
                             </a>
                         </li>

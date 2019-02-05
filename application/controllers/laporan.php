@@ -21,11 +21,20 @@ class laporan extends CI_Controller{
     
     function tampil_data_pemesanan()
     {
-        $data['record']=$this->model_laporan->tampilkan_data_pemesanan();
-        $this->template->load('template','pemesanan/lihat_data',$data);
+        $data['record']=$this->model_laporan->tampildatapemesanan();
+        $this->template->load('template','laporan/laporanpemesanan',$data);
     } 
 
+    function tampil_data_barang()
+    {
+        $data['record']=$this->model_laporan->tampildatabarang();
+        $this->template->load('template','laporan/laporandatabarang',$data);
+    }
 
-
+    function tampil_pembelian()
+    {
+        $data['record']=$this->model_laporan->tampildatapembelian();
+        $this->template->load('template','laporan/laporanpembelian',$data);
+    }
 
 }

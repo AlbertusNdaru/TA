@@ -3,7 +3,7 @@
                     
                         <h2 align="center" class="page-header">
                             Djono Silver <br>
-                            Laporan Penjualan
+                            Laporan Data Barang
                         </h2>
                     </div>
                 </div> 
@@ -13,7 +13,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <?php echo form_open('cetak/allpdf', array('class'=>'form-inline')); ?>
+                                <?php echo form_open('cetak/cetakbarang', array('class'=>'form-inline')); ?>
                                 <table>    
                                     <tr class="form-group" >
                                         <label for="exampleInputName2" style="margin-right: 10px;">Tanggal</label>
@@ -25,7 +25,7 @@
                                     </tr>
                                     <tr><button style="margin-left: 10px;" class="btn btn-primary btn-sm" type="submit" name="submit">Tampilkan</button>
                                     <button style="margin-left: 5px;" class="btn btn-primary btn-sm" name="cetak">Cetak</button>
-                                    <a style="margin-left: 5px; color:white" href="<?php echo base_url().'cetak/allpdf'?>" target="_blank" class="btn btn-primary btn-sm" name="cetak">Cetak Semua</a>
+                                    <a style="margin-left: 5px; color:white" href="<?php echo base_url().'cetak/cetakbarang'?>" target="_blank" class="btn btn-primary btn-sm" name="cetak">Cetak Semua</a>
                                 </tr>
                                 </table>
                                 </form>
@@ -43,12 +43,12 @@
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                         <thead>
                                             <tr>
-                                                <th>Nomer Penjualan</th>
-                                                <th>Jasa Kirim</th>
-                                                <th>Tanggal Transaksi</th>
-                                                <th>Ongkos Kirim</th>
-                                                <th>Total Penjualan</th>
-                                                <th>Status</th>
+                                                
+                                                <th>Kode Barang</th>
+                                                <th>Nama Barang</th>
+                                                <th>Kategori</th>
+                                                <th>Bahan</th>
+                                                <th>Harga Barang</th>
                                                 
                                             </tr>
                                         </thead>
@@ -57,13 +57,12 @@
                                         $no = $this->uri->segment('3');
                                         foreach ($record->result() as $r) { ?>
                                             <tr class="gradeU">
-                                                <td><?php echo $r->id_penjualan ?></td>
-                                                <td><?php echo $r->nama_layanan ?></td>
-                                                <td><?php echo $r->tgl ?></td>
-                                                <td><?php echo $r->ongkir ?></td>
-                                                <td>Rp. <?php echo number_format($r->total_harga,2) ?></td>   
-                                                <td><?php echo $r->status?></td>  
-                                               
+                                                <td><?php echo $r->id_barang ?></td>
+                                                <td><?php echo $r->nama_barang ?></td>
+                                                <td><?php echo $r->nama_kategori ?></td>
+                                                <td><?php echo $r->nama_bahan ?></td>
+                                                <td><?php echo $r->harga_barang ?></td>
+                                       
                                             </tr>
                                         <?php } ?>
                                         </tbody>
