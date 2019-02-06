@@ -121,7 +121,7 @@ class model_transaksi extends ci_model
 
     function totalchartpending()
     {
-        $jumlah= $this->db->query("SELECT count(id_penjualan) as total from penjualan where status='New' and bukti is not null");
+        $jumlah= $this->db->query("SELECT count(id_penjualan) as total from penjualan where status='Proses' and bukti is not null");
         $jumlahchart = $jumlah->row();
         if($jumlahchart)
         {
@@ -159,7 +159,7 @@ class model_transaksi extends ci_model
 
     function datapending()
     {
-        return $this->db->query("SELECT*from penjualan where status='New' and bukti is not null");
+        return $this->db->query("SELECT*from penjualan where status='Proses' and bukti is not null");
     }
 
     function datapemesananpending()
