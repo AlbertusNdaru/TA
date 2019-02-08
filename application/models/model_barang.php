@@ -30,8 +30,8 @@ class model_barang extends ci_model{
 
     function tampil_data_by_id($id)
     {
-        $query= "SELECT a.* , b.nama_kategori, c.nama_bahan FROM Barang as a inner join kategori as b on b.id_kategori=a.id_kategori inner join bahan as c on c.id_bahan = a.id_bahan where id_barang='".$id."'";
-        return $this->db->query($query);
+        $query= "SELECT a.* , b.nama_kategori, c.nama_bahan FROM barang as a inner join kategori as b on b.id_kategori=a.id_kategori inner join bahan as c on c.id_bahan = a.id_bahan where id_barang='".$id."'";
+        return $this->db->query($query)->row();
     }
 
     function tampil_data_by_name()

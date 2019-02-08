@@ -48,7 +48,11 @@ class auth extends CI_Controller{
                 $this->session->set_userdata('userdata',$hasil);
                 $this->session->set_userdata('level',0);
                     //echo "sad";
-                    redirect('penjualan');
+                if (count($this->cart->contents())!=0)
+                {
+                    redirect('penjualan/post_pending');
+                }
+                redirect('penjualan');
             }
             else{
                 $this->load->view('form_loginuser');

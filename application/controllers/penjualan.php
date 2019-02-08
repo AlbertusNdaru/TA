@@ -101,13 +101,40 @@ class penjualan extends CI_Controller{
 
 
     function post_penjualan()
-    { check_session();
-                $id= $this->input->post('id_barang');
-                $datatransaksi = array('id'=>$id);
-                $jmlchart = $this->model_transaksi->insertdetail($datatransaksi);
-                //redirect("penjualan");
-      
+    { 
+        check_session();
+       
+            $id= $this->input->post('id_barang');
+            $datatransaksi = array('id'=>$id);
+            $jmlchart = $this->model_transaksi->insertdetail($datatransaksi);
+     //redirect("penjualan");
     }
+
+    function post_pending()
+    {
+        foreach($this->cart->contents() as $r)
+        {
+            $id= $r['id'];
+            $datatransaksi = array('id'=>$id);
+            $jmlchart = $this->model_transaksi->insertdetail($datatransaksi);
+        }
+        redirect('penjualan');
+    }
+
+    function poscartpending()
+    {  
+     
+        $id= $this->input->post('id_barang');
+        $data= $this->model_barang->tampil_data_by_id($id);
+        $harga= $data->harga_barang;
+        $berat= $data->berat_satuan;
+        $namabarang= $data->nama_barang;
+        $jml= 1;
+        $carts=cart_config($id, $jml, $harga, $namabarang,$berat);
+        $this->cart->insert($carts);
+        echo json_encode($this->cart->contents());
+    }
+
   
     function postpemesanan()
     { if(check_session())
@@ -214,6 +241,12 @@ class penjualan extends CI_Controller{
         }
     }
 
+    function chartnologin()
+    {
+        $pending['data'] = count($this->cart->contents());
+        $this->template->load('template1','userinterface/cart_penjualannologin',$pending);
+    }
+
     
     function chartpenjualanoff()
     { check_session();
@@ -234,6 +267,11 @@ class penjualan extends CI_Controller{
     { check_session();
         $this->model_transaksi->hapusdetailonline($id);
         redirect("penjualan/chart");
+    }
+    function hapusdetailnolog($id)
+    { 
+        $this->cart->remove($id);
+        redirect("penjualan/chartnologin");
     }
     function hapusdetailbatal()
     { check_session();

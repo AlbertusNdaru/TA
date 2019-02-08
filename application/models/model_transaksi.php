@@ -210,6 +210,33 @@ class model_transaksi extends ci_model
 		
     }
 
+    function insertdetail2($databarangtransaksi)
+    {
+        $id_brng=$databarangtransaksi['id'];
+        $jml=$databarangtransaksi['qty'];
+        $id_anggota=$_SESSION['userdata']->id_anggota;
+        $query = "SELECT max(id_keranjang) as maxKode from keranjang";
+        $check = $this->db->query($query);
+        $data = $check->row();
+		$id_detail = $data->maxKode;
+		$noUrut = (int) substr($id_detail,3,3);
+		$noUrut++;
+		$char = "KRJ";
+		$newID = $char. sprintf("%03s",$noUrut);
+		$querybarang = "SELECT id_barang from keranjang where id_anggota ='".$id_anggota."' and id_barang='".$id_brng."' and cek=0 and date(tgl)=date(now())";
+        $cekBarang = $this->db->query($querybarang)->row();
+        $data= array('id_keranjang'=>$newID,'id_barang'=>$id_brng,'jumlah'=>$jml,'id_anggota'=>$id_anggota,'cek'=>0);
+		if($cekBarang)
+		{
+			$this->db->query("UPDATE keranjang set jumlah=jumlah+1 where id_anggota = '".$id_anggota."' and id_barang='".$id_brng."' and cek=0 and date(tgl)=date(now())");  
+		}
+		else
+		{
+            $this->db->insert('keranjang',$data);
+		}
+		
+    }
+
     function insertdetailadmin($databarangtransaksi)
     {
         $id_brng=$databarangtransaksi['id'];
@@ -340,7 +367,8 @@ class model_transaksi extends ci_model
         $this->db->where('id_keranjang',$id);
         $this->db->delete('keranjang');
     }
-    function hapusdetailonlinebatal($id)
+
+    function hapusdetailonlinebatal()
     {
         $this->db->where('id_penjualan',null);
         $this->db->where('id_anggota',$_SESSION['userdata']->id_anggota);

@@ -121,6 +121,7 @@
                         <?php } else {?>
 
                         <!-- <li><a href="<?php  echo base_url()?>"><span class='glyphicon glyphicon-home'></span>  Home  </a></li> -->
+                        <li><button  style="margin-top: 6px; margin-right:5px;background-color:silver; color:black;" class='btn btn-primary'  onclick="page('14')" ><span class='glyphicon glyphicon-shopping-cart'></span>  Cart <span class="badge" id="chartpendingtotal"><?php echo count($this->cart->contents())?></span> </button></li>
 				        <li><button  style="margin-top: 6px; margin-right:5px;background-color:silver; color:black;" class='btn btn-primary'  onclick="login()" >Login</button></li>
                         <li><button  style="margin-top: 6px; margin-right:5px;background-color:skyblue; color:black;" class='btn btn-primary'  onclick="daftar()" >Daftar</button></li>
                        
@@ -225,30 +226,33 @@ function validate(evt) {
 
 
 
+
+
+
 function total(level) {
 if(level!= "")
 {
     level = parseInt(level);
-if(level == 1)
-{
-    $.ajax({
-        url:"<?php echo base_url('penjualan/get_trans_pending');?>",
-        type : "get",
-        success : function(data)
-        {
-            	
-                $("#chartpending").html(
-                    "<div>"+data+"</div>"
-                );
-            if(window.location.href==="<?php echo base_url('pembelian')?>"){getpreviewpembelian();}
-            if(window.location.href==="<?php echo base_url('penjualanOffline')?>"){getpreview();}
+    if(level == 1)
+    {
+        $.ajax({
+            url:"<?php echo base_url('penjualan/get_trans_pending');?>",
+            type : "get",
+            success : function(data)
+            {
+                    
+                    $("#chartpending").html(
+                        "<div>"+data+"</div>"
+                    );
+                if(window.location.href==="<?php echo base_url('pembelian')?>"){getpreviewpembelian();}
+                if(window.location.href==="<?php echo base_url('penjualanOffline')?>"){getpreview();}
+            
         
-       
-        }
-    });
-}
-else
-{
+            }
+        });
+    }
+    else
+    {
     $.ajax({
         url:"<?php echo base_url('penjualan/get_totalchart');?>",
         type : "get",
@@ -280,7 +284,7 @@ else
            }
         }
     });
-}
+    }   
 }
    
    
@@ -492,6 +496,9 @@ var index= parseInt(a);
         break;
     case 13:
     window.location="<?php  echo base_url().'penjualan/chart'?>";
+        break;
+        case 14:
+    window.location="<?php  echo base_url().'penjualan/chartnologin'?>";
         break;
 }
 }

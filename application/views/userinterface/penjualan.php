@@ -112,26 +112,48 @@ function detail()
         }
         else
         {
+            $.ajax({
+            url  :"<?php echo base_url('penjualan/post_penjualan');?>",
+            type : 'POST',
+            data : {
+                id_barang : id
+            },
+            success : function(data)
+            {
+                total();
+                getstok(id);
+            }
+            })
+        }
+    }
+    else
+    {
+        var stok = parseInt($('#'+id).val());
+        if(stok<1)
+        {
+            alert('stok habis');
+        }
+        else
+        {
         $.ajax({
-        url  :"<?php echo base_url('penjualan/post_penjualan');?>",
+        url  :"<?php echo base_url('penjualan/poscartpending');?>",
         type : 'POST',
         data : {
             id_barang : id
         },
          success : function(data)
         {
-              total();
-              getstok(id);
+                    var cart=JSON.parse(data);
+					 var count = Object.keys(cart).length;
+                     $("#chartpendingtotal").html(
+                    "<div>"+count+"</div>");
         }
      })
         }
     }
-    else
-    {
-        login();
-    }
      
  }
+
 
  
  function getstok(id)
