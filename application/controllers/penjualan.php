@@ -117,7 +117,7 @@ class penjualan extends CI_Controller{
             $id= $r['id'];
             $qty=$r['qty'];
             $datatransaksi = array('id'=>$id,'qty'=>$qty);
-            $jmlchart = $this->model_transaksi->insertdetail($datatransaksi);
+            $jmlchart = $this->model_transaksi->insertdetail2($datatransaksi);
         }
         redirect('penjualan');
     }
