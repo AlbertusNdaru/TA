@@ -190,6 +190,7 @@ class model_transaksi extends ci_model
         $id_anggota=$_SESSION['userdata']->id_anggota;
         $query = "SELECT max(id_keranjang) as maxKode from keranjang";
         $check = $this->db->query($query);
+        $jml= $databarangtransaksi['qty'];
         $data = $check->row();
 		$id_detail = $data->maxKode;
 		$noUrut = (int) substr($id_detail,3,3);
@@ -201,7 +202,7 @@ class model_transaksi extends ci_model
         $data= array('id_keranjang'=>$newID,'id_barang'=>$id_brng,'jumlah'=>1,'id_anggota'=>$id_anggota,'cek'=>0);
 		if($cekBarang)
 		{
-			$this->db->query("UPDATE keranjang set jumlah=jumlah+1 where id_anggota = '".$id_anggota."' and id_barang='".$id_brng."' and cek=0 and date(tgl)=date(now())");  
+			$this->db->query("UPDATE keranjang set jumlah=jumlah+$jml where id_anggota = '".$id_anggota."' and id_barang='".$id_brng."' and cek=0 and date(tgl)=date(now())");  
 		}
 		else
 		{
