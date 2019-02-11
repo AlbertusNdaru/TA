@@ -228,7 +228,7 @@ class model_transaksi extends ci_model
         $data= array('id_keranjang'=>$newID,'id_barang'=>$id_brng,'jumlah'=>$jml,'id_anggota'=>$id_anggota,'cek'=>0);
 		if($cekBarang)
 		{
-			$this->db->query("UPDATE keranjang set jumlah=jumlah+1 where id_anggota = '".$id_anggota."' and id_barang='".$id_brng."' and cek=0 and date(tgl)=date(now())");  
+			$this->db->query("UPDATE keranjang set jumlah=jumlah+$jml where id_anggota = '".$id_anggota."' and id_barang='".$id_brng."' and cek=0 and date(tgl)=date(now())");  
 		}
 		else
 		{
