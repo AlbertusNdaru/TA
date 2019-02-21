@@ -19,8 +19,8 @@
         $pdf->SetFont('Arial','B','C');
         $pdf->SetFontSize(16);
         $pdf->image(base_url().'img/logo.png',1,0.4,4);
-        $pdf->text(8, 2,'Djono Silver',0,1,'C');
-        $pdf->text(7, 2.7,'LAPORAN PENJUALAN',0,1,'C');
+        $pdf->text(8, 2.7,'Djono Silver',0,1,'C');
+        $pdf->text(7, 4.5,'LAPORAN PENJUALAN',0,1,'C');
         $pdf->SetFont('Arial','B','C');
         $pdf->SetFontSize(12);
         $pdf->setLineWidth(0.05);

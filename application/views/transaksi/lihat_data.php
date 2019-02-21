@@ -20,6 +20,7 @@
                                                 <th>Tanggal Transaksi</th>
                                                 <th>Total Penjualan</th>
                                                 <th>Status</th>
+                                                <th>Bukti Pembayaran</th>
                                                 <th>Preview Detail</th>
                                             </tr>
                                         </thead>
@@ -32,6 +33,7 @@
                                                 <td><?php echo $r->tgl ?></td>
                                                 <td>Rp. <?php echo number_format($r->total_harga,2) ?></td>   
                                                 <td><?php echo $r->status?></td>  
+                                                <td><img style="width: 100%;height: 176px;" src="<?php echo base_foto().$r->bukti?>" ></td> 
                                                 <td><button class="btn btn-success" onclick="getpreviewtransaksi('<?php echo $r->id_penjualan ?>')">Preview</button></td>                                             
                                             </tr>
                                         <?php } ?>
