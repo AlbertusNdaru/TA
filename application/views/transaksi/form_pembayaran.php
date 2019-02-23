@@ -31,12 +31,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jumlah Uang</label>
-                                    <input  id="jmlinput" class="form-control" name="inputuang" placeholder="jumlah uang" required >
+                                    <input  id="jmlinput" class="form-control" name="inputuang" placeholder="jumlah uang" onchange="total1()" required >
                                 </div>
                                 <div class="form-group">
-                                    <label>Total</label>
+                                    <label>Kekurangan</label>
                                     <input  id="total" class="form-control" name="total" placeholder="total bayar" required readonly>
-                                    <input hidden id="jmltotal" class="form-control" name="total" placeholder="total bayar" required readonly onfocus="total()">
+                                    <input hidden id="jmltotal" class="form-control" name="total" placeholder="total bayar" required readonly>
                                 </div>
                                 <button type="submit" id="btnsimpanbarang" name="submit" class="btn btn-primary btn-sm" >Simpan</button> | 
                                 <?php echo anchor('penjualan','Kembali',array('class'=>'btn btn-danger btn-sm'))?>
@@ -69,19 +69,12 @@ function pilihtransaksi() {
 
 
 <script>
-function total() {
-    var id_penjualan=$('#transaksipending').val();
-    $.ajax({
-        url  :"<?php echo base_url('transaksi/getjumlahpembayaran');?>",
-        type : 'POST',
-        data :{id_penjualan : id_penjualan},
-        success : function(dd)
-        {
-            var data= $.parseJSON(dd);
-            console.log(dd);
-           $('#jmlbayar').val(data['total_harga']);
-           $('#jmlint').val(accounting.formatMoney(data['total_harga'], "Rp ", 2, ".", ","));
-        }
-    })
+function total1() {
+    var jmlinput=parseInt($('#jmlinput').val());
+    var jmlbayar= parseInt($('#jmlbayar').val());
+    var kekurangan = jmlbayar-jmlinput;
+    $('#total').val(kekurangan);
+    if(kekurangan > 0)
+    { alert("jumlah yang di inputkan kurang"); }
 }
 </script>
